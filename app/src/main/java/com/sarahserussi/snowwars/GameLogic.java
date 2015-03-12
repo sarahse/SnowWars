@@ -45,10 +45,10 @@ public class GameLogic {
         }
     }
 
-    /* check if a player has won */
+    /* check if a player has won
     private boolean hasWon(Player player){
 
-    }
+    }*/
 
     /* check which side of the net the ball has dropped on */
     private int checkSideOfBall(){

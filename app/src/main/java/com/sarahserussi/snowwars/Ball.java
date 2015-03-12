@@ -50,6 +50,14 @@ public class Ball {
 
     public void setSpeed(Speed speed) { this.speed = speed; }
 
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
     public void setServePositionToPlayer1(){
         /* need to get screenWidth & screenHeight */
         this.setBallPositionX(200);
