@@ -1,5 +1,8 @@
 package com.sarahserussi.snowwars;
 
+import android.graphics.Bitmap;
+import android.graphics.Rect;
+
 /**
  * Created by sarahserussi on 12.03.15.
  */
@@ -10,12 +13,21 @@ public class Ball {
     private int ballSpeedX;
     private int ballSpeedY;
     private Speed speed;
-    private int testHakon;
     private Player player;
+    private Bitmap bitmap;
+    private int width, height, spriteWidth, spriteHeight;
+    private Rect sourceRect;
 
     /* constructor */
-    public Ball (){
-
+    public Ball (Bitmap bitmap, int ballPositionX, int ballPositionY, int width, int height ){
+        this.bitmap = bitmap;
+        this.ballPositionX = ballPositionX;
+        this.ballPositionY = ballPositionY;
+        this.spriteWidth = width;
+        this.spriteHeight = height;
+        spriteWidth = bitmap.getWidth();
+        spriteHeight= bitmap.getHeight();
+        sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
     }
 
     public int getBallPositionX() {

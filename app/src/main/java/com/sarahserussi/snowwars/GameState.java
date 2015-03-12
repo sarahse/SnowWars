@@ -1,24 +1,46 @@
 package com.sarahserussi.snowwars;
 
+import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.view.MotionEvent;
+import android.view.SurfaceView;
 
 /**
  * Created by sarahserussi on 12.03.15.
  */
-public class GameState {
+public class GameState extends SurfaceView {
+
+    private Player player1, player2;
+    private Ball ball;
 
     float eX, eY;
     /* Where the touch methods go */
      /* init */
-    public GameState () {
-        //add player
-        //set playerPos
-        //add ball
+    public GameState (Context context) {
+        super(context);
+        //create player and load bitmap
+        player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerright),
+                200,200, //set player position
+                64,64); //set size of bitmap
+
+        player2 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerleft),
+                600,200, //set player position
+                64,64); //set size of bitmap
+
+        //create ball and load bitmap
+        ball = new Ball(BitmapFactory.decodeResource(getResources(), R.drawable.aquaball),
+                300,300, //set ball position
+                20,20);
+
+        //make the game focusable so it can handle events
+        setFocusable(true);
         //set servePos
         //add background
         //set new score
 
     }
+
+
 
     public void update(MotionEvent e) {
         //if event.getX is left of playerPos - move player left
