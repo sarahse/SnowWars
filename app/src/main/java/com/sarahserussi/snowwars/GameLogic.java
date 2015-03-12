@@ -45,10 +45,23 @@ public class GameLogic {
         }
     }
 
-    /* check if a player has won
-    private boolean hasWon(Player player){
+    /* check if a player has won - needs editing!!*/
+    private boolean hasPlayer1Won(Player player){
+        if (score.hasWon(player1) == player1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
-    }*/
+    private boolean hasPlayer2Won(Player player){
+        if (score.hasWon(player2) == player2){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /* check which side of the net the ball has dropped on */
     private int checkSideOfBall(){
@@ -104,9 +117,9 @@ public class GameLogic {
     }
 
     public void moveBallToServePosition(Player player1, Player player2){
-        if (hasWon(player1)){
+        if (hasPlayer1Won(player1)){
             ball.setServePositionToPlayer1();
-        } else if (hasWon(player2)){
+        } else if (hasPlayer2Won(player2)){
             ball.setServePositionToPlayer2();
         }
     }

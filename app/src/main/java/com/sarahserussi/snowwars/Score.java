@@ -26,11 +26,14 @@ public class Score {
         }
     }
 
-    public void hasWon(Player player){
+    public Player hasWon(Player player){
         if (player == player1 && player1Score == 5){
             /* end game and set player1 as winner */
+            return player1;
         } else if (player == player2 && player2Score == 5){
             /* end game and set player2 as winner */
+            return player2;
         }
+        return null;
     }
 }
