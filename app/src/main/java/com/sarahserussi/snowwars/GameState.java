@@ -40,38 +40,42 @@ public class GameState extends SurfaceView {
 
     }
 
+    /* handles the player's movement
+     * if the player is pressed, set touched to true and move the player where it's dragged
+     * if the player is released, set touched to false and drop the player */
+    public boolean onTouchEvent(MotionEvent event){
+        if (event.getAction() == MotionEvent.ACTION_DOWN){
+            player1.handleActionDown((int) event.getX(), (int) event.getY());
 
-
-    public void update(MotionEvent e) {
-        //if event.getX is left of playerPos - move player left
-        //move player right
-        //player jump g
-
-        int a = e.getActionMasked();
-        int aIndex = e.getActionIndex();
-        int x,y;
-        switch(a) {
-            //case MotionEvent.ACTION_DOWN:
-            //case MotionEvent.ACTION_POINTER_DOWN:
-            /* Action between touched down and up */
-            case MotionEvent.ACTION_MOVE:
-                x = (int) e.getX(aIndex);
-                y = (int) e.getY(aIndex);
-
-                /*if(m.leftPressed(x, y)) {
-                    movingLeft = true;
-                    movingRight = false;
-                    }
-                  */
+            if (player1.isTouched()){
+                player1.setPositionX((int) event.getX());
+                player1.setPositionY((int) event.getY());
+            }
         }
 
-    }
-
-    public boolean onTouchEvent(MotionEvent event) {
-        eX = event.getX();
-        eY = event.getY();
-
-        update(event);
+        if (event.getAction() == MotionEvent.ACTION_UP){
+            if (player1.isTouched()){
+                player1.setTouched(false);
+            }
+        }
         return true;
     }
+
+     /* Control the player with your finger
+    public boolean onTouchMove(MotionEvent event){
+        player1.setPositionX((int) event.getX());
+        player1.setPositionY((int) event.getY());
+
+        /*
+        player2.setPositionX((int) event.getX());
+        player2.setPositionY((int) event.getY());
+        return true;
+    }
+
+    /* When finger is released from player - drop the player
+    public boolean onTouchUp(MotionEvent event){
+        player1.setPositionX((int) event.getX());
+        player1.setPositionY((int) event.getY());
+        return true;
+    }*/
 }

@@ -15,6 +15,7 @@ public class Player {
     private Bitmap bitmap;
     private int width, height, spriteWidth, spriteHeight;
     private Rect sourceRect;
+    private boolean touched;
 
     /* Constructor */
     public Player(Bitmap bitmap, int positionX, int positionY, int width, int height ){
@@ -70,6 +71,29 @@ public class Player {
 
     /* jump */
     public void jump(){
+
+    }
+
+    public boolean isTouched() {
+        return touched;
+    }
+
+    public void setTouched(boolean touched){
+        this.touched = touched;
+    }
+
+    public void handleActionDown(int eventX, int eventY){
+        if (eventX >= (positionX - bitmap.getWidth() / 2)
+                && (eventX <= (positionX + bitmap.getHeight() / 2))) {
+            if (eventY >= (positionY - bitmap.getHeight() / 2)
+                    && (positionY <= (positionY + bitmap.getHeight() / 2))) {
+                setTouched(true);
+            } else {
+                setTouched(false);
+            }
+        } else {
+            setTouched(false);
+        }
 
     }
 
