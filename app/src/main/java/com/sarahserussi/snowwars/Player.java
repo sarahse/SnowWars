@@ -10,6 +10,11 @@ public class Player {
     private int playerSpeedY;
     private Speed speed;
 
+    /* Constructor */
+    public Player(){
+
+    }
+
     public int getPositionX() {
         return positionX;
     }
@@ -58,8 +63,5 @@ public class Player {
 
     /* move left and right */
 
-    /* Constructor */
-    public Player(){
 
-    }
 }
