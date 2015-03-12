@@ -23,7 +23,7 @@ public class GameState {
     public void update(MotionEvent e) {
         //if event.getX is left of playerPos - move player left
         //move player right
-        //player jump
+        //player jump g
 
         int a = e.getActionMasked();
         int aIndex = e.getActionIndex();
