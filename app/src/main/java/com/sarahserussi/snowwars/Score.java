@@ -26,7 +26,7 @@ public class Score {
         }
     }
 
-    public Player hasWon(Player player){
+    public Player whoWon(Player player){
         if (player == player1 && player1Score == 5){
             /* end game and set player1 as winner */
             return player1;
