@@ -39,7 +39,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         //create ball and load bitmap
         ball = new Ball(BitmapFactory.decodeResource(getResources(), R.drawable.aquaball),
-                300,300, //set ball position
+                50,50, //set ball position
                 20,20);
 
         //update();

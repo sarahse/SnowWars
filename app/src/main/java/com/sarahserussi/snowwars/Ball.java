@@ -24,8 +24,10 @@ public class Ball {
         this.bitmap = bitmap;
         this.ballPositionX = ballPositionX;
         this.ballPositionY = ballPositionY;
-        this.spriteWidth = width;
-        this.spriteHeight = height;
+        this.width = width;
+        this.height = height;
+        //this.spriteWidth = width;
+        //this.spriteHeight = height;
         spriteWidth = bitmap.getWidth();
         spriteHeight= bitmap.getHeight();
         sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
