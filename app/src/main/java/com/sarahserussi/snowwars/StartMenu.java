@@ -20,7 +20,7 @@ public class StartMenu {
         if (rulesButton.isPressed()){
             new RulesView();
         } else if (connplayButton.isPressed()){
-            new GameState();
+            //new GameState();
         } else if (quitButton.isPressed()){
             /* quit the application */
         }
