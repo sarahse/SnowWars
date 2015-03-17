@@ -15,6 +15,7 @@ public class GameState extends SurfaceView {
 
     private Player player1, player2;
     private Ball ball;
+    private GameLogic gameLogic;
 
     //float eX, eY;
     /* Where the touch methods go */
@@ -45,7 +46,7 @@ public class GameState extends SurfaceView {
 
     //update method: updates the gamestate
     public void update(){
-
+        gameLogic.bounceWall(ball, player1, player2);
     }
 
     @Override
@@ -55,6 +56,7 @@ public class GameState extends SurfaceView {
         player1.draw(canvas);
         player2.draw(canvas);
         ball.draw(canvas);
+        update();
 
     }
 
