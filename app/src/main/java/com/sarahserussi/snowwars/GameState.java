@@ -100,6 +100,13 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 player1.setTouched(false);
             }
         }
+
+        if (event.getAction() == MotionEvent.ACTION_MOVE){
+            if (player1.isTouched()) {
+                player1.setPositionX((int) event.getX());
+                player1.setPositionY((int) event.getY());
+            }
+        }
         return true;
     }
 
@@ -127,21 +134,21 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-     /* Control the player with your finger
+     /* Control the player with your finger*/
     public boolean onTouchMove(MotionEvent event){
         player1.setPositionX((int) event.getX());
         player1.setPositionY((int) event.getY());
 
-        /*
+
         player2.setPositionX((int) event.getX());
         player2.setPositionY((int) event.getY());
         return true;
     }
 
-    /* When finger is released from player - drop the player
+    /* When finger is released from player - drop the player*/
     public boolean onTouchUp(MotionEvent event){
         player1.setPositionX((int) event.getX());
         player1.setPositionY((int) event.getY());
         return true;
-    }*/
+    }
 }
