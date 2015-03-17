@@ -1,11 +1,9 @@
 package com.sarahserussi.snowwars;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -21,6 +19,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private GameLogic gameLogic;
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
+    private Speed speed;
 
     /* Where the touch methods go */
      /* init */
@@ -43,6 +42,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 getScreenWidth(context) / 5, getScreenHeight(context) / 5); //set ball position
         ball.setSpriteHeight(getScreenHeight(context)/7);
         ball.setSpriteWidth(getScreenHeight(context)/7);
+        ball.setSpeed(new Speed(20,20));
 
         //make the game focusable so it can handle events
         setFocusable(true);
@@ -52,6 +52,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         // create the game loop thread
         gameLoopThread = new GameLoopThread(this);
+
+        //update();
 
         //set servePos
         //add background
@@ -71,8 +73,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     //update method: updates the gamestate
-    public void update(float delta) {
-        gameLogic.bounceWall(ball, player1, player2);
+    public void update() {
+        gameLogic.update(ball, player1, player2);
     }
 
     public void render(Canvas canvas) {

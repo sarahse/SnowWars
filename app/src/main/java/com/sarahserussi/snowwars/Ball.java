@@ -19,6 +19,7 @@ public class Ball {
     private int spriteWidth, spriteHeight;
     private Rect sourceRect;
 
+
     /* constructor */
     public Ball(Bitmap bitmap, int ballPositionX, int ballPositionY) {
         this.bitmap = bitmap;
@@ -27,6 +28,7 @@ public class Ball {
         spriteWidth = bitmap.getWidth();
         spriteHeight = bitmap.getHeight();
         sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);
+
     }
 
     public void draw(Canvas canvas) {

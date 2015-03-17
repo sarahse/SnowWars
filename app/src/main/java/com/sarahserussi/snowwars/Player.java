@@ -35,10 +35,6 @@ public class Player {
         canvas.drawBitmap(bitmap, sourceRect, destRect, null);
     }
 
-    public void update() {
-
-    }
-
     /* move left and right */
     public void handleActionDown(int eventX, int eventY) {
         if (eventX >= (positionX - bitmap.getWidth() / 2)
