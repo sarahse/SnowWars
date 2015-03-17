@@ -23,8 +23,8 @@ public class Player {
         this.bitmap = bitmap;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.spriteWidth = width;
-        this.spriteHeight = height;
+        this.width = width;
+        this.height = height;
         spriteWidth = bitmap.getWidth();
         spriteHeight= bitmap.getHeight();
         sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
