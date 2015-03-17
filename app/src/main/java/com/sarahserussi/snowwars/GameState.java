@@ -75,7 +75,7 @@ public class GameState extends SurfaceView {
     }
 
     @Override
-    public void onDraw(Canvas canvas){
+    protected void onDraw(Canvas canvas){
         canvas.drawColor(Color.WHITE);
         player1.draw(canvas);
         player2.draw(canvas);
