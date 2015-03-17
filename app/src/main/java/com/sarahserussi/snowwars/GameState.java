@@ -18,21 +18,22 @@ public class GameState extends SurfaceView {
     private Ball ball;
     private GameLogic gameLogic;
     private SurfaceHolder holder;
+    private GameLoopThread gameLoopThread;
 
     //float eX, eY;
     /* Where the touch methods go */
      /* init */
     public GameState (Context context) {
         super(context);
+        gameLoopThread = new GameLoopThread(this);
         holder = getHolder();
         holder.addCallback(new SurfaceHolder.Callback() {
 
 
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-                Canvas canvas = holder.lockCanvas(null);
-                onDraw(canvas);
-                holder.unlockCanvasAndPost(canvas);
+                gameLoopThread.setRunning(true);
+                gameLoopThread.start();
             }
 
             @Override
@@ -42,7 +43,16 @@ public class GameState extends SurfaceView {
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
+                boolean retry = true;
+                gameLoopThread.setRunning(false);
+                while (retry) {
+                    try {
+                        gameLoopThread.join();
+                        retry = false;
+                    } catch (InterruptedException e){
 
+                    }
+                }
             }
         });
         //create player and load bitmap
@@ -59,7 +69,7 @@ public class GameState extends SurfaceView {
                 300,300, //set ball position
                 20,20);
 
-        update();
+        //update();
 
         //make the game focusable so it can handle events
         setFocusable(true);
