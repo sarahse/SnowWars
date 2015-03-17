@@ -86,19 +86,15 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
      * if the player is pressed, set touched to true and move the player where it's dragged
      * if the player is released, set touched to false and drop the player */
     public boolean onTouchEvent(MotionEvent event) {
-        /*if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
-
-            if (player1.isTouched()) {
-                player1.setPositionX((int) event.getX());
-                player1.setPositionY((int) event.getY());
-            }
-        }*/
 
         if (event.getAction() == MotionEvent.ACTION_UP) {
 
             if (player1.isTouched()) {
                 player1.setTouched(false);
+            }
+
+            if (player2.isTouched()) {
+                player2.setTouched(false);
             }
         }
 
@@ -107,6 +103,12 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             if (player1.isTouched()) {
                 player1.setPositionX((int) event.getX());
                 player1.setPositionY((int) event.getY());
+            }
+
+            player2.handleActionDown((int) event.getX(), (int) event.getY());
+            if (player2.isTouched()) {
+                player2.setPositionX((int) event.getX());
+                player2.setPositionY((int) event.getY());
             }
         }
         return true;
@@ -134,23 +136,5 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
             }
         }
-    }
-
-     /* Control the player with your finger*/
-    public boolean onTouchMove(MotionEvent event){
-        player1.setPositionX((int) event.getX());
-        player1.setPositionY((int) event.getY());
-
-
-        player2.setPositionX((int) event.getX());
-        player2.setPositionY((int) event.getY());
-        return true;
-    }
-
-    /* When finger is released from player - drop the player*/
-    public boolean onTouchUp(MotionEvent event){
-        player1.setPositionX((int) event.getX());
-        player1.setPositionY((int) event.getY());
-        return true;
     }
 }
