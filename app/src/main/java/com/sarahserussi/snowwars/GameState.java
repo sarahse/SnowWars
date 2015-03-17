@@ -71,17 +71,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         ball.draw(canvas);
     }
 
-    /*
-    @Override
-    protected void onDraw(Canvas canvas){
-        canvas.drawColor(Color.WHITE);
-        player1.draw(canvas);
-        player2.draw(canvas);
-        ball.draw(canvas);
-        update();
-
-    }*/
-
     /* handles the player's movement
      * if the player is pressed, set touched to true and move the player where it's dragged
      * if the player is released, set touched to false and drop the player */
