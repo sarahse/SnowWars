@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.MotionEvent;
+import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 /**
@@ -16,12 +17,34 @@ public class GameState extends SurfaceView {
     private Player player1, player2;
     private Ball ball;
     private GameLogic gameLogic;
+    private SurfaceHolder holder;
 
     //float eX, eY;
     /* Where the touch methods go */
      /* init */
     public GameState (Context context) {
         super(context);
+        holder = getHolder();
+        holder.addCallback(new SurfaceHolder.Callback() {
+
+
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                Canvas canvas = holder.lockCanvas(null);
+                onDraw(canvas);
+                holder.unlockCanvasAndPost(canvas);
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+
+            }
+        });
         //create player and load bitmap
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerright),
                 200,200, //set player position
@@ -43,8 +66,6 @@ public class GameState extends SurfaceView {
         //set servePos
         //add background
         //set new score
-
-
 
     }
 
