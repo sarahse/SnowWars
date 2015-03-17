@@ -36,6 +36,10 @@ public class Player {
         canvas.drawBitmap(bitmap, sourceRect, destRect, null);
     }
 
+    public void update(){
+
+    }
+
     public int getPositionX() {
         return positionX;
     }

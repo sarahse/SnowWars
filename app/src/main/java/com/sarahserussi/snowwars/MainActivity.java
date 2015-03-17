@@ -29,4 +29,9 @@ public class MainActivity extends ActionBarActivity {
         super.onDestroy();
 
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+    }
 }

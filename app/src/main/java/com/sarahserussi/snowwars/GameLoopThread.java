@@ -6,6 +6,7 @@ import android.graphics.Canvas;
  * Created by sarahserussi on 17.03.15.
  */
 public class GameLoopThread extends Thread {
+
     private GameState gameState;
     private boolean running = false;
 
@@ -20,10 +21,12 @@ public class GameLoopThread extends Thread {
     public void run() {
         while (running) {
             Canvas canvas = null;
+            // try locking the canvas for exclusive pixel editing on the surface
             try {
                 canvas = gameState.getHolder().lockCanvas();
                 synchronized (gameState.getHolder()) {
-                    gameState.onDraw(canvas);
+                    //draws the canvas on the panel
+                    gameState.render(canvas);
                 }
             } finally {
                 if (canvas != null){
