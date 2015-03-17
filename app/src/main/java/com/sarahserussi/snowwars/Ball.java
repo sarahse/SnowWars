@@ -26,8 +26,6 @@ public class Ball {
         this.ballPositionY = ballPositionY;
         this.width = width;
         this.height = height;
-        //this.spriteWidth = width;
-        //this.spriteHeight = height;
         spriteWidth = bitmap.getWidth();
         spriteHeight= bitmap.getHeight();
         sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
