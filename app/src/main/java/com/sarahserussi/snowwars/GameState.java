@@ -36,11 +36,15 @@ public class GameState extends SurfaceView {
                 300,300, //set ball position
                 20,20);
 
+        update();
+
         //make the game focusable so it can handle events
         setFocusable(true);
         //set servePos
         //add background
         //set new score
+
+
 
     }
 
