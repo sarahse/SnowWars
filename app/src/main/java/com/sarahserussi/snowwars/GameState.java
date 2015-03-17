@@ -105,8 +105,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         if (event.getAction() == MotionEvent.ACTION_MOVE){
             player1.handleActionDown((int) event.getX(), (int) event.getY());
             if (player1.isTouched()) {
-                player1.setPositionX((int) event.getX());
-                player1.setPositionY((int) event.getY());
+                player1.setPositionX((int) event.getX()/2);
+                player1.setPositionY((int) event.getY()/2);
             }
         }
         return true;
