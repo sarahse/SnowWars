@@ -87,7 +87,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
      * if the player is released, set touched to false and drop the player */
     public boolean onTouchEvent(MotionEvent event) {
         /*if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            player1.handleActionDown((int) event.getX(), (int) event.getY());
+
 
             if (player1.isTouched()) {
                 player1.setPositionX((int) event.getX());
@@ -96,6 +96,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }*/
 
         if (event.getAction() == MotionEvent.ACTION_UP) {
+            player1.handleActionDown((int) event.getX(), (int) event.getY());
             if (player1.isTouched()) {
                 player1.setTouched(false);
             }
