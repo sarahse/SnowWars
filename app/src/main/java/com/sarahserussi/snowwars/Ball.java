@@ -19,67 +19,38 @@ public class Ball {
     private int spriteWidth, spriteHeight;
     private Rect sourceRect;
 
-
     /* constructor */
-    public Ball (Bitmap bitmap, int ballPositionX, int ballPositionY){
+    public Ball(Bitmap bitmap, int ballPositionX, int ballPositionY) {
         this.bitmap = bitmap;
         this.ballPositionX = ballPositionX;
         this.ballPositionY = ballPositionY;
         spriteWidth = bitmap.getWidth();
-        spriteHeight= bitmap.getHeight();
-        sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
+        spriteHeight = bitmap.getHeight();
+        sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);
     }
 
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
         //where to draw the sprite
         Rect destRect = new Rect(getBallPositionX(), getBallPositionY(), getBallPositionX() + spriteWidth, getBallPositionY() + spriteHeight);
         canvas.drawBitmap(bitmap, sourceRect, destRect, null);
     }
 
-    public int getBallPositionX() {
-        return ballPositionX;
-    }
-
-    public void setBallPositionX(int ballPositionX) {
-        this.ballPositionX = ballPositionX;
-    }
-
-    public int getBallPositionY() {
-        return ballPositionY;
-    }
-
-    public void setBallPositionY(int ballPositionY) {
-        this.ballPositionY = ballPositionY;
-    }
-
-    public Speed getSpeed() { return speed; }
-
-    public void setSpeed(Speed speed) { this.speed = speed; }
-
-    public Bitmap getBitmap() {
-        return bitmap;
-    }
-
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
-    }
-
-    public void setServePositionToPlayer1(){
+    public void setServePositionToPlayer1() {
         /* need to get screenWidth & screenHeight */
         this.setBallPositionX(200);
         this.setBallPositionY(200);
     }
 
-    public void setServePositionToPlayer2(){
+    public void setServePositionToPlayer2() {
         /* need to get screenWidth & screenHeight */
         this.setBallPositionX(400);
         this.setBallPositionY(400);
     }
 
     /* checks if the ball touches the player, needs editing (bitmapRect) */
-    public boolean touchesPlayer(Player player){
-        if(this.getBallPositionX() == player.getPositionX()
-                && this.getBallPositionY() == player.getPositionY()){
+    public boolean touchesPlayer(Player player) {
+        if (this.getBallPositionX() == player.getPositionX()
+                && this.getBallPositionY() == player.getPositionY()) {
             return true;
         } else {
             return false;
@@ -100,5 +71,37 @@ public class Ball {
 
     public void setSpriteHeight(int spriteHeight) {
         this.spriteHeight = spriteHeight;
+    }
+
+    public int getBallPositionX() {
+        return ballPositionX;
+    }
+
+    public void setBallPositionX(int ballPositionX) {
+        this.ballPositionX = ballPositionX;
+    }
+
+    public int getBallPositionY() {
+        return ballPositionY;
+    }
+
+    public void setBallPositionY(int ballPositionY) {
+        this.ballPositionY = ballPositionY;
+    }
+
+    public Speed getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(Speed speed) {
+        this.speed = speed;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 }

@@ -22,28 +22,25 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
 
-    //float eX, eY;
     /* Where the touch methods go */
      /* init */
-    public GameState (Context context) {
+    public GameState(Context context) {
         super(context);
-
-
 
         //create player and load bitmap
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerright),
-                (getScreenWidth(context)/40),getScreenHeight(context)/2); //set player position
+                (getScreenWidth(context) / 40), getScreenHeight(context) / 2); //set player position
         player1.setSpriteWidth(400);
         player1.setSpriteHeight(400);
 
         player2 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerleft),
-                ((getScreenWidth(context)*31)/40), getScreenHeight(context)/2); //set player position
+                ((getScreenWidth(context) * 31) / 40), getScreenHeight(context) / 2); //set player position
         player2.setSpriteWidth(400);
         player2.setSpriteHeight(400);
 
         //create ball and load bitmap
         ball = new Ball(BitmapFactory.decodeResource(getResources(), R.drawable.aquaball),
-                getScreenWidth(context)/5,getScreenHeight(context)/5); //set ball position
+                getScreenWidth(context) / 5, getScreenHeight(context) / 5); //set ball position
         ball.setSpriteHeight(100);
         ball.setSpriteWidth(100);
 
@@ -59,27 +56,26 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         //set servePos
         //add background
         //set new score
-
     }
 
-    public int getScreenWidth(Context context){
+    public int getScreenWidth(Context context) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
         return width;
     }
 
-    public int getScreenHeight(Context context){
+    public int getScreenHeight(Context context) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int height = metrics.heightPixels;
         return height;
     }
 
     //update method: updates the gamestate
-    public void update(float delta){
+    public void update(float delta) {
         gameLogic.bounceWall(ball, player1, player2);
     }
 
-    public void render(Canvas canvas){
+    public void render(Canvas canvas) {
         canvas.drawColor(Color.RED);
         player1.draw(canvas);
         player2.draw(canvas);
@@ -89,18 +85,18 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     /* handles the player's movement
      * if the player is pressed, set touched to true and move the player where it's dragged
      * if the player is released, set touched to false and drop the player */
-    public boolean onTouchEvent(MotionEvent event){
-        if (event.getAction() == MotionEvent.ACTION_DOWN){
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             player1.handleActionDown((int) event.getX(), (int) event.getY());
 
-            if (player1.isTouched()){
+            if (player1.isTouched()) {
                 player1.setPositionX((int) event.getX());
                 player1.setPositionY((int) event.getY());
             }
         }
 
-        if (event.getAction() == MotionEvent.ACTION_UP){
-            if (player1.isTouched()){
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (player1.isTouched()) {
                 player1.setTouched(false);
             }
         }
@@ -125,7 +121,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             try {
                 gameLoopThread.join();
                 retry = false;
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
 
             }
         }

@@ -20,26 +20,46 @@ public class Player {
     private boolean touched;
 
     /* Constructor */
-    public Player(Bitmap bitmap, int positionX, int positionY){
+    public Player(Bitmap bitmap, int positionX, int positionY) {
         this.bitmap = bitmap;
         this.positionX = positionX;
         this.positionY = positionY;
         spriteWidth = bitmap.getWidth();
-        spriteHeight= bitmap.getHeight();
-        sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
+        spriteHeight = bitmap.getHeight();
+        sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);
     }
 
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
         //where to draw the sprite
         Rect destRect = new Rect(getPositionX(), getPositionY(), getPositionX() + spriteWidth, getPositionY() + spriteHeight);
         canvas.drawBitmap(bitmap, sourceRect, destRect, null);
     }
 
-    public void update(){
+    public void update() {
 
     }
 
+    /* move left and right */
+    public void handleActionDown(int eventX, int eventY) {
+        if (eventX >= (positionX - bitmap.getWidth() / 2)
 
+                && (eventX <= (positionX + bitmap.getHeight() / 2))) {
+            if (eventY >= (positionY - bitmap.getHeight() / 2)
+                    && (positionY <= (positionY + bitmap.getHeight() / 2))) {
+                setTouched(true);
+            } else {
+                setTouched(false);
+            }
+        } else {
+            setTouched(false);
+        }
+
+    }
+
+    /* jump */
+    public void jump() {
+
+    }
 
     public int getPositionX() {
         return positionX;
@@ -97,16 +117,11 @@ public class Player {
         this.spriteHeight = spriteHeight;
     }
 
-    /* jump */
-    public void jump(){
-
-    }
-
     public boolean isTouched() {
         return touched;
     }
 
-    public void setTouched(boolean touched){
+    public void setTouched(boolean touched) {
         this.touched = touched;
     }
 
@@ -117,25 +132,4 @@ public class Player {
     public void setSourceRect(Rect sourceRect) {
         this.sourceRect = sourceRect;
     }
-
-    public void handleActionDown(int eventX, int eventY){
-        if (eventX >= (positionX - bitmap.getWidth() / 2)
-
-                && (eventX <= (positionX + bitmap.getHeight() / 2))) {
-            if (eventY >= (positionY - bitmap.getHeight() / 2)
-                    && (positionY <= (positionY + bitmap.getHeight() / 2))) {
-                setTouched(true);
-            } else {
-                setTouched(false);
-            }
-        } else {
-            setTouched(false);
-        }
-
-    }
-
-
-    /* move left and right */
-
-
 }
