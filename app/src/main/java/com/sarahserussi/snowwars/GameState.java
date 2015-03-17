@@ -30,19 +30,19 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         //create player and load bitmap
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerright),
                 (getScreenWidth(context) / 40), getScreenHeight(context) / 2); //set player position
-        player1.setSpriteWidth(400);
-        player1.setSpriteHeight(400);
+        player1.setSpriteWidth(getScreenWidth(context)/5);
+        player1.setSpriteHeight(getScreenHeight(context)/3);
 
         player2 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerleft),
                 ((getScreenWidth(context) * 31) / 40), getScreenHeight(context) / 2); //set player position
-        player2.setSpriteWidth(400);
-        player2.setSpriteHeight(400);
+        player2.setSpriteWidth(getScreenWidth(context)/5);
+        player2.setSpriteHeight(getScreenHeight(context)/3);
 
         //create ball and load bitmap
         ball = new Ball(BitmapFactory.decodeResource(getResources(), R.drawable.aquaball),
                 getScreenWidth(context) / 5, getScreenHeight(context) / 5); //set ball position
-        ball.setSpriteHeight(100);
-        ball.setSpriteWidth(100);
+        ball.setSpriteHeight(getScreenHeight(context)/7);
+        ball.setSpriteWidth(getScreenHeight(context)/7);
 
         //make the game focusable so it can handle events
         setFocusable(true);
