@@ -8,6 +8,8 @@ import android.view.WindowManager;
 
 public class MainActivity extends ActionBarActivity {
 
+    private GameState gameState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +20,8 @@ public class MainActivity extends ActionBarActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(new GameState(this));
+        gameState = new GameState(this);
+        setContentView(gameState);
     }
 
     @Override
