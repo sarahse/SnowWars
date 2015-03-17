@@ -1,6 +1,7 @@
 package com.sarahserussi.snowwars;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 
 /**
@@ -28,6 +29,12 @@ public class Ball {
         spriteWidth = bitmap.getWidth();
         spriteHeight= bitmap.getHeight();
         sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
+    }
+
+    public void draw(Canvas canvas){
+        //where to draw the sprite
+        Rect destRect = new Rect(getBallPositionX(), getBallPositionY(), getBallPositionX() + spriteWidth, getBallPositionY() + spriteHeight);
+        canvas.drawBitmap(bitmap, sourceRect, destRect, null);
     }
 
     public int getBallPositionX() {

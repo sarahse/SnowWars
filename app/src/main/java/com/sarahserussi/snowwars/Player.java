@@ -1,6 +1,7 @@
 package com.sarahserussi.snowwars;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 
 /**
@@ -27,6 +28,12 @@ public class Player {
         spriteWidth = bitmap.getWidth();
         spriteHeight= bitmap.getHeight();
         sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
+    }
+
+    public void draw(Canvas canvas){
+        //where to draw the sprite
+        Rect destRect = new Rect(getPositionX(), getPositionY(), getPositionX() + spriteWidth, getPositionY() + spriteHeight);
+        canvas.drawBitmap(bitmap, sourceRect, destRect, null);
     }
 
     public int getPositionX() {
@@ -82,8 +89,17 @@ public class Player {
         this.touched = touched;
     }
 
+    public Rect getSourceRect() {
+        return sourceRect;
+    }
+
+    public void setSourceRect(Rect sourceRect) {
+        this.sourceRect = sourceRect;
+    }
+
     public void handleActionDown(int eventX, int eventY){
         if (eventX >= (positionX - bitmap.getWidth() / 2)
+
                 && (eventX <= (positionX + bitmap.getHeight() / 2))) {
             if (eventY >= (positionY - bitmap.getHeight() / 2)
                     && (positionY <= (positionY + bitmap.getHeight() / 2))) {

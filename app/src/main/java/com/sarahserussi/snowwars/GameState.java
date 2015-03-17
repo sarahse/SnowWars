@@ -2,6 +2,9 @@ package com.sarahserussi.snowwars;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
@@ -13,7 +16,7 @@ public class GameState extends SurfaceView {
     private Player player1, player2;
     private Ball ball;
 
-    float eX, eY;
+    //float eX, eY;
     /* Where the touch methods go */
      /* init */
     public GameState (Context context) {
@@ -37,6 +40,21 @@ public class GameState extends SurfaceView {
         //set servePos
         //add background
         //set new score
+
+    }
+
+    //update method: updates the gamestate
+    public void update(){
+
+    }
+
+    @Override
+    public void onDraw(Canvas canvas){
+        super.onDraw(canvas);
+        canvas.drawColor(Color.WHITE);
+        player1.draw(canvas);
+        player2.draw(canvas);
+        ball.draw(canvas);
 
     }
 
