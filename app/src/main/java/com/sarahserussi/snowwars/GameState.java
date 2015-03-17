@@ -61,9 +61,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     //update method: updates the gamestate
     public void update(float delta){
-
-
-
         gameLogic.bounceWall(ball, player1, player2);
     }
 
