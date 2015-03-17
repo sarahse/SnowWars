@@ -1,6 +1,7 @@
 package com.sarahserussi.snowwars;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
@@ -14,17 +15,15 @@ public class Player {
     private int playerSpeedY;
     private Speed speed;
     private Bitmap bitmap;
-    private int width, height, spriteWidth, spriteHeight;
+    private int spriteWidth, spriteHeight;
     private Rect sourceRect;
     private boolean touched;
 
     /* Constructor */
-    public Player(Bitmap bitmap, int positionX, int positionY, int width, int height ){
+    public Player(Bitmap bitmap, int positionX, int positionY){
         this.bitmap = bitmap;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.width = width;
-        this.height = height;
         spriteWidth = bitmap.getWidth();
         spriteHeight= bitmap.getHeight();
         sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
@@ -39,6 +38,8 @@ public class Player {
     public void update(){
 
     }
+
+
 
     public int getPositionX() {
         return positionX;
@@ -78,6 +79,22 @@ public class Player {
 
     public void setSpeed(Speed speed) {
         this.speed = speed;
+    }
+
+    public int getSpriteWidth() {
+        return spriteWidth;
+    }
+
+    public void setSpriteWidth(int spriteWidth) {
+        this.spriteWidth = spriteWidth;
+    }
+
+    public int getSpriteHeight() {
+        return spriteHeight;
+    }
+
+    public void setSpriteHeight(int spriteHeight) {
+        this.spriteHeight = spriteHeight;
     }
 
     /* jump */

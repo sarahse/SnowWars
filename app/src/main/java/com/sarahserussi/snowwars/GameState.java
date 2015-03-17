@@ -1,10 +1,12 @@
 package com.sarahserussi.snowwars;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -30,19 +32,20 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         //create player and load bitmap
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerright),
-                200,200, //set player position
-                64,64); //set size of bitmap
+                (getScreenWidth(context)/40),getScreenHeight(context)/2); //set player position
+        player1.setSpriteWidth(400);
+        player1.setSpriteHeight(400);
 
         player2 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerleft),
-                600,200, //set player position
-                64,64); //set size of bitmap
+                ((getScreenWidth(context)*31)/40), getScreenHeight(context)/2); //set player position
+        player2.setSpriteWidth(400);
+        player2.setSpriteHeight(400);
 
         //create ball and load bitmap
         ball = new Ball(BitmapFactory.decodeResource(getResources(), R.drawable.aquaball),
-                50,50, //set ball position
-                20,20);
-
-        //update();
+                getScreenWidth(context)/5,getScreenHeight(context)/5); //set ball position
+        ball.setSpriteHeight(100);
+        ball.setSpriteWidth(100);
 
         //make the game focusable so it can handle events
         setFocusable(true);
@@ -57,6 +60,18 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         //add background
         //set new score
 
+    }
+
+    public int getScreenWidth(Context context){
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        return width;
+    }
+
+    public int getScreenHeight(Context context){
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        int height = metrics.heightPixels;
+        return height;
     }
 
     //update method: updates the gamestate

@@ -16,16 +16,15 @@ public class Ball {
     private Speed speed;
     private Player player;
     private Bitmap bitmap;
-    private int width, height, spriteWidth, spriteHeight;
+    private int spriteWidth, spriteHeight;
     private Rect sourceRect;
 
+
     /* constructor */
-    public Ball (Bitmap bitmap, int ballPositionX, int ballPositionY, int width, int height ){
+    public Ball (Bitmap bitmap, int ballPositionX, int ballPositionY){
         this.bitmap = bitmap;
         this.ballPositionX = ballPositionX;
         this.ballPositionY = ballPositionY;
-        this.width = width;
-        this.height = height;
         spriteWidth = bitmap.getWidth();
         spriteHeight= bitmap.getHeight();
         sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
@@ -87,4 +86,19 @@ public class Ball {
         }
     }
 
+    public int getSpriteWidth() {
+        return spriteWidth;
+    }
+
+    public void setSpriteWidth(int spriteWidth) {
+        this.spriteWidth = spriteWidth;
+    }
+
+    public int getSpriteHeight() {
+        return spriteHeight;
+    }
+
+    public void setSpriteHeight(int spriteHeight) {
+        this.spriteHeight = spriteHeight;
+    }
 }

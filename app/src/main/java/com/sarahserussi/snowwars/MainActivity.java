@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
 
         /* turn the title of the project off */
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         /* Set fullscreen */
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
