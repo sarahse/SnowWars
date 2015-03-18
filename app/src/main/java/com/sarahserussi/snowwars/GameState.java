@@ -43,6 +43,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         ball.setSpriteHeight(getScreenHeight(context)/7);
         ball.setSpriteWidth(getScreenHeight(context)/7);
         ball.setSpeed(new Speed(20,20));
+        update();
 
         //make the game focusable so it can handle events
         setFocusable(true);
@@ -74,7 +75,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     //update method: updates the gamestate
     public void update() {
-        gameLogic.update(ball, player1, player2);
+
+        ball.update();
+        //gameLogic.update(ball, player1, player2);
     }
 
     public void render(Canvas canvas) {

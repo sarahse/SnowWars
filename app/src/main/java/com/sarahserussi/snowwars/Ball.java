@@ -28,13 +28,20 @@ public class Ball {
         spriteWidth = bitmap.getWidth();
         spriteHeight = bitmap.getHeight();
         sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);
-
+        this.speed = new Speed(5,5);
     }
 
     public void draw(Canvas canvas) {
         //where to draw the sprite
         Rect destRect = new Rect(getBallPositionX(), getBallPositionY(), getBallPositionX() + spriteWidth, getBallPositionY() + spriteHeight);
         canvas.drawBitmap(bitmap, sourceRect, destRect, null);
+    }
+
+    public void update(){
+        ballPositionX += (speed.getxVelocity() * speed.getxDirection());
+        ballPositionY += (speed.getyVelocity() * speed.getyDirection());
+        this.setBallPositionX(ballPositionX);
+        this.setBallPositionY(ballPositionY);
     }
 
     public void setServePositionToPlayer1() {
