@@ -1,6 +1,7 @@
 package com.sarahserussi.snowwars;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
 /**
@@ -20,6 +21,8 @@ public class GameLogic {
     public GameLogic(){
 
     }
+
+
 
     /* method that ensures the ball bounces off of the walls, but not the ceiling */
     public void update(){

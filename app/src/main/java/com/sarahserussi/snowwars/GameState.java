@@ -55,8 +55,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         // create the game loop thread
         gameLoopThread = new GameLoopThread(this);
 
-        //update();
-
         //set servePos
         //add background
         //set new score
@@ -107,7 +105,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         ball.draw(canvas);
     }
 
-    /* check if the ball collides with the left wall OBS! check logic!*/
+    /* check if the ball collides with the left wall */
     private void checkLeftWallCollision() {
         if (ball.getSpeed().getxDirection() == Speed.DIRECTION_LEFT
                 && ball.getBallPositionX() <= 0) {
@@ -115,7 +113,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    /* check if the ball collides with the right wall OBS! check logic!*/
+    /* check if the ball collides with the right wall */
     public void checkRightWallCollision() {
         if (ball.getSpeed().getxDirection() == Speed.DIRECTION_RIGHT
                 && ball.getBallPositionX() + ball.getBitmap().getWidth() / 3.5 >= getScreenWidth()) {
@@ -124,7 +122,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    /* check if the ball collides with the bottom wall OBS! check logic!*/
+    /* check if the ball collides with the bottom wall */
     public void checkBottomWallCollision() {
         if (ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
                 && ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()) {
@@ -134,7 +132,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    /* check if the ball collides with the top wall OBS! check logic!*/
+    /* check if the ball collides with the top wall */
     public void checkTopWallCollision(){
         if (ball.getSpeed().getyDirection() == Speed.DIRECTION_UP
                 && ball.getBallPositionY() + ball.getBitmap().getHeight() <= 0) {
