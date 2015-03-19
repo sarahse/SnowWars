@@ -25,10 +25,12 @@ public class GameLoopThread extends Thread {
             try {
                 canvas = gameState.getHolder().lockCanvas();
                 synchronized (gameState.getHolder()) {
-                    //update game state
-                    gameState.update();
+
                     //draws the canvas on the panel
                     gameState.render(canvas);
+
+                    //update game state
+                    gameState.update();
 
                 }
             } finally {

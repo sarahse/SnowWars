@@ -1,5 +1,8 @@
 package com.sarahserussi.snowwars;
 
+import android.content.Context;
+import android.util.DisplayMetrics;
+
 /**
  * Created by sarahserussi on 12.03.15.
  */
@@ -19,13 +22,14 @@ public class GameLogic {
     }
 
     /* method that ensures the ball bounces off of the walls, but not the ceiling */
-    public void update(Ball ball, Player player1, Player player2){
-        checkLeftWallCollision(ball);
-        checkRightWallCollision(ball);
-        checkBottomWallCollision(ball, player1, player2);
-        checkTopWallCollision(ball);
+    public void update(){
+        //checkLeftWallCollision();
+        //checkRightWallCollision();
+        //checkBottomWallCollision();
+        //checkTopWallCollision();
 
     }
+
     /* method that ensures the ball bounces off of the player */
     private void bouncePlayer(Player player, Ball ball){
         checkIntersect(player, ball);
@@ -68,39 +72,13 @@ public class GameLogic {
         return 0;
     }
 
-    /* check if the ball collides with the left wall OBS! check logic!*/
-    public void checkLeftWallCollision(Ball ball) {
-        if (ball.getSpeed().getxDirection() == Speed.DIRECTION_LEFT
-                && ball.getBallPositionX() / 2 <= 0) {
-            ball.getSpeed().toggleXDirection();
-        }
-    }
 
-    /* check if the ball collides with the right wall OBS! check logic!*/
-    public void checkRightWallCollision(Ball ball) {
-        if (ball.getSpeed().getxDirection() == Speed.DIRECTION_RIGHT
-                && ball.getBallPositionX() + ball.getBitmap().getWidth() / 2 >= screenWidth) {
-            /* need to add the width of the bitmap to check outer position of the ball */
-            ball.getSpeed().toggleXDirection();
-        }
-    }
 
-    /* check if the ball collides with the bottom wall OBS! check logic!*/
-    public void checkBottomWallCollision(Ball ball, Player player1, Player player2) {
-        if (ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
-                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 2 >= screenHeight) {
-            moveBallToServePosition(player1,player2);
-        }
-    }
 
-    /* check if the ball collides with the top wall OBS! check logic!*/
-    public void checkTopWallCollision(Ball ball){
-        if (ball.getSpeed().getyDirection() == Speed.DIRECTION_UP
-                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 2 >= screenHeight) {
-            /* needs to have a timer function that delays the descent of the ball */
-            ball.getSpeed().toggleYDirection();
-        }
-    }
+
+
+
+
 
     /* check if the ball intersects with the player */
     public void checkIntersect(Player player, Ball ball){

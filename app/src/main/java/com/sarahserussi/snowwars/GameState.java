@@ -1,6 +1,7 @@
 package com.sarahserussi.snowwars;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -61,6 +62,18 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         //set new score
     }
 
+    public int getScreenWidth() {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        return width;
+    }
+
+    public int getScreenHeight() {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        int height = metrics.heightPixels;
+        return height;
+    }
+
     public int getScreenWidth(Context context) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
@@ -77,7 +90,28 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public void update() {
 
         ball.update();
-        //gameLogic.update(ball, player1, player2);
+
+        if (ball.getSpeed().getxDirection() == Speed.DIRECTION_LEFT
+                && ball.getBallPositionX() - ball.getBitmap().getWidth() / 2 <= getScreenWidth()) {
+            ball.getSpeed().toggleXDirection();
+        }
+
+        if (ball.getSpeed().getxDirection() == Speed.DIRECTION_RIGHT
+                && ball.getBallPositionX() + ball.getBitmap().getWidth() / 2 >= 0) {
+            /* need to add the width of the bitmap to check outer position of the ball */
+            ball.getSpeed().toggleXDirection();
+        }
+
+        if (ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
+                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 2 >= getScreenHeight()) {
+            //moveBallToServePosition(player1,player2);
+        }
+
+        if (ball.getSpeed().getyDirection() == Speed.DIRECTION_UP
+                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 2 >= 0) {
+            /* needs to have a timer function that delays the descent of the ball */
+            ball.getSpeed().toggleYDirection();
+        }
     }
 
     public void render(Canvas canvas) {
@@ -85,6 +119,40 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         player1.draw(canvas);
         player2.draw(canvas);
         ball.draw(canvas);
+    }
+
+    /* check if the ball collides with the left wall OBS! check logic!*/
+    private void checkLeftWallCollision() {
+        if (ball.getSpeed().getxDirection() == Speed.DIRECTION_LEFT
+                && ball.getBallPositionX() - ball.getBitmap().getWidth() / 2 <= 0) {
+            ball.getSpeed().toggleXDirection();
+        }
+    }
+
+    /* check if the ball collides with the right wall OBS! check logic!*/
+    public void checkRightWallCollision(Context context) {
+        if (ball.getSpeed().getxDirection() == Speed.DIRECTION_RIGHT
+                && ball.getBallPositionX() + ball.getBitmap().getWidth() / 2 >= getScreenWidth(context)) {
+            /* need to add the width of the bitmap to check outer position of the ball */
+            ball.getSpeed().toggleXDirection();
+        }
+    }
+
+    /* check if the ball collides with the bottom wall OBS! check logic!*/
+    public void checkBottomWallCollision(Context context) {
+        if (ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
+                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 2 >= getScreenHeight(context)) {
+            //moveBallToServePosition(player1,player2);
+        }
+    }
+
+    /* check if the ball collides with the top wall OBS! check logic!*/
+    public void checkTopWallCollision(){
+        if (ball.getSpeed().getyDirection() == Speed.DIRECTION_UP
+                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 2 >= 0) {
+            /* needs to have a timer function that delays the descent of the ball */
+            ball.getSpeed().toggleYDirection();
+        }
     }
 
     /* handles the player's movement
