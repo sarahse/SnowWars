@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -22,6 +23,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
     private Speed speed;
+    private Bitmap verticalLine;
 
     /* Where the touch methods go */
      /* init */
@@ -102,11 +104,11 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void render(Canvas canvas) {
-        Bitmap verticalLine;
+
         verticalLine = BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2);
 
         canvas.drawColor(Color.RED);
-        canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2), (getScreenWidth()/2), (getScreenHeight()-verticalLine.getHeight()), null);
+        canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2), (getScreenWidth()/2-verticalLine.getWidth()/2), (getScreenHeight()-verticalLine.getHeight()), null);
         player1.draw(canvas);
         player2.draw(canvas);
         ball.draw(canvas);
@@ -158,6 +160,18 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
+    public Rect getSpriteLineRect(){
+        return new Rect(getLinePositionX(), getLinePositionY(), (int)getLinePositionX() + verticalLine.getWidth(), (int)getLinePositionY() + verticalLine.getHeight());
+    }
+
+    public int getLinePositionX(){
+        return (getScreenWidth()/2);
+    }
+
+    public int getLinePositionY(){
+        return (getScreenHeight()-verticalLine.getHeight());
+    }
+
     /* handles the player's movement
      * if the player is pressed, set touched to true and move the player where it's dragged
      * if the player is released, set touched to false and drop the player */
@@ -176,13 +190,25 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         if (event.getAction() == MotionEvent.ACTION_MOVE){
             player1.handleActionDown((int) event.getX(), (int) event.getY());
-            if (player1.isTouched()) {
+            if (player1.isTouched() ) {
                 player1.setPositionX((int) event.getX());
+                /* checks if the player touches the net */
+                if (player1.getSpriteRect().intersect(getSpriteLineRect())){
+                    player1.setPositionX((getScreenWidth()/2-player1.getSpriteRect().width()-(verticalLine.getWidth()/2)));
+                }
             }
 
             player2.handleActionDown((int) event.getX(), (int) event.getY());
             if (player2.isTouched()) {
                 player2.setPositionX((int) event.getX());
+                /* checks if the player touches the net */
+                if (player2.getSpriteRect().intersect(getSpriteLineRect())){
+                    player2.setPositionX((getScreenWidth()/2)+(verticalLine.getWidth()/2));
+                }
+                /* checks if the player goes out of the screen */
+                if ((player2.getPositionX()+player2.getSpriteRect().width()) >= getScreenWidth()){
+                    player2.setPositionX(getScreenWidth()-player2.getSpriteRect().width());
+                }
             }
         }
         return true;
