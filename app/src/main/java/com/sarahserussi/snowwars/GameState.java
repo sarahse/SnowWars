@@ -96,6 +96,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         checkBottomWallCollision();
 
         checkTopWallCollision();
+
+        checkIntersect();
     }
 
     public void render(Canvas canvas) {
@@ -126,7 +128,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public void checkBottomWallCollision() {
         if (ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
                 && ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()) {
-            System.out.println(getScreenHeight());
             //moveBallToServePosition(player1,player2);
             ball.getSpeed().toggleYDirection();
         }
@@ -137,6 +138,17 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         if (ball.getSpeed().getyDirection() == Speed.DIRECTION_UP
                 && ball.getBallPositionY() + ball.getBitmap().getHeight() <= 0) {
             /* needs to have a timer function that delays the descent of the ball */
+            ball.getSpeed().toggleYDirection();
+        }
+    }
+
+    public void checkIntersect(){
+        if (ball.getSpriteRect().intersect(player1.getSpriteRect())){
+            ball.getSpeed().toggleXDirection();
+            ball.getSpeed().toggleYDirection();
+        }
+        if (ball.getSpriteRect().intersect(player2.getSpriteRect())){
+            ball.getSpeed().toggleXDirection();
             ball.getSpeed().toggleYDirection();
         }
     }

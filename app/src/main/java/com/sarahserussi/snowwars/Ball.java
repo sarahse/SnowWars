@@ -28,7 +28,6 @@ public class Ball {
         spriteWidth = bitmap.getWidth();
         spriteHeight = bitmap.getHeight();
         sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);
-        this.speed = new Speed(5,5);
     }
 
     public void draw(Canvas canvas) {
@@ -112,5 +111,11 @@ public class Ball {
 
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
+    }
+
+    public Rect getSourceRect() { return sourceRect; }
+
+    public Rect getSpriteRect(){
+        return new Rect(getBallPositionX(), getBallPositionY(), (int)getBallPositionX() + spriteWidth, (int)getBallPositionY() + spriteHeight);
     }
 }

@@ -127,4 +127,8 @@ public class Player {
     public void setSourceRect(Rect sourceRect) {
         this.sourceRect = sourceRect;
     }
+
+    public Rect getSpriteRect(){
+        return new Rect(getPositionX(), getPositionY(), (int)getPositionX() + spriteWidth, (int)getPositionY() + spriteHeight);
+    }
 }
