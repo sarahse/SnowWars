@@ -2,6 +2,7 @@ package com.sarahserussi.snowwars;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -102,6 +103,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     public void render(Canvas canvas) {
         canvas.drawColor(Color.RED);
+        canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vertical_line), getScreenWidth()*2/5, getScreenHeight()-450, null);
         player1.draw(canvas);
         player2.draw(canvas);
         ball.draw(canvas);
