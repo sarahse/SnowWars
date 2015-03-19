@@ -102,8 +102,11 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void render(Canvas canvas) {
+        Bitmap verticalLine;
+        verticalLine = BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2);
+
         canvas.drawColor(Color.RED);
-        canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.vertical_line), getScreenWidth()*2/5, getScreenHeight()-450, null);
+        canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2), (getScreenWidth()/2), (getScreenHeight()-verticalLine.getHeight()), null);
         player1.draw(canvas);
         player2.draw(canvas);
         ball.draw(canvas);
