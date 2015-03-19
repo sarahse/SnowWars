@@ -43,7 +43,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 getScreenWidth(context) / 5, getScreenHeight(context) / 5); //set ball position
         ball.setSpriteHeight(getScreenHeight(context)/7);
         ball.setSpriteWidth(getScreenHeight(context)/7);
-        ball.setSpeed(new Speed(20,20));
+        ball.setSpeed(new Speed(30,30));
         update();
 
         //make the game focusable so it can handle events
@@ -91,27 +91,13 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         ball.update();
 
-        if (ball.getSpeed().getxDirection() == Speed.DIRECTION_LEFT
-                && ball.getBallPositionX() - ball.getBitmap().getWidth() / 2 <= getScreenWidth()) {
-            ball.getSpeed().toggleXDirection();
-        }
+        checkLeftWallCollision();
 
-        if (ball.getSpeed().getxDirection() == Speed.DIRECTION_RIGHT
-                && ball.getBallPositionX() + ball.getBitmap().getWidth() / 2 >= 0) {
-            /* need to add the width of the bitmap to check outer position of the ball */
-            ball.getSpeed().toggleXDirection();
-        }
+        checkRightWallCollision();
 
-        if (ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
-                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 2 >= getScreenHeight()) {
-            //moveBallToServePosition(player1,player2);
-        }
+        checkBottomWallCollision();
 
-        if (ball.getSpeed().getyDirection() == Speed.DIRECTION_UP
-                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 2 >= 0) {
-            /* needs to have a timer function that delays the descent of the ball */
-            ball.getSpeed().toggleYDirection();
-        }
+        checkTopWallCollision();
     }
 
     public void render(Canvas canvas) {
@@ -124,32 +110,34 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     /* check if the ball collides with the left wall OBS! check logic!*/
     private void checkLeftWallCollision() {
         if (ball.getSpeed().getxDirection() == Speed.DIRECTION_LEFT
-                && ball.getBallPositionX() - ball.getBitmap().getWidth() / 2 <= 0) {
+                && ball.getBallPositionX() <= 0) {
             ball.getSpeed().toggleXDirection();
         }
     }
 
     /* check if the ball collides with the right wall OBS! check logic!*/
-    public void checkRightWallCollision(Context context) {
+    public void checkRightWallCollision() {
         if (ball.getSpeed().getxDirection() == Speed.DIRECTION_RIGHT
-                && ball.getBallPositionX() + ball.getBitmap().getWidth() / 2 >= getScreenWidth(context)) {
+                && ball.getBallPositionX() + ball.getBitmap().getWidth() / 3.5 >= getScreenWidth()) {
             /* need to add the width of the bitmap to check outer position of the ball */
             ball.getSpeed().toggleXDirection();
         }
     }
 
     /* check if the ball collides with the bottom wall OBS! check logic!*/
-    public void checkBottomWallCollision(Context context) {
+    public void checkBottomWallCollision() {
         if (ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
-                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 2 >= getScreenHeight(context)) {
+                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()) {
+            System.out.println(getScreenHeight());
             //moveBallToServePosition(player1,player2);
+            ball.getSpeed().toggleYDirection();
         }
     }
 
     /* check if the ball collides with the top wall OBS! check logic!*/
     public void checkTopWallCollision(){
         if (ball.getSpeed().getyDirection() == Speed.DIRECTION_UP
-                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 2 >= 0) {
+                && ball.getBallPositionY() + ball.getBitmap().getHeight() <= 0) {
             /* needs to have a timer function that delays the descent of the ball */
             ball.getSpeed().toggleYDirection();
         }
@@ -175,13 +163,11 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             player1.handleActionDown((int) event.getX(), (int) event.getY());
             if (player1.isTouched()) {
                 player1.setPositionX((int) event.getX());
-                player1.setPositionY((int) event.getY());
             }
 
             player2.handleActionDown((int) event.getX(), (int) event.getY());
             if (player2.isTouched()) {
                 player2.setPositionX((int) event.getX());
-                player2.setPositionY((int) event.getY());
             }
         }
         return true;
