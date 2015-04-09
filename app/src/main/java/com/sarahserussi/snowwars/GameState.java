@@ -107,7 +107,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         verticalLine = BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2);
 
-        canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
+        //canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
+        canvas.drawColor(Color.WHITE);
         canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2), (getScreenWidth()/2-verticalLine.getWidth()/2), (getScreenHeight()-verticalLine.getHeight()), null);
         player1.draw(canvas);
         player2.draw(canvas);
@@ -149,6 +150,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
+    /* check if the ball intersects with player or web */
     public void checkIntersect(){
         if (ball.getSpriteRect().intersect(player1.getSpriteRect())){
             ball.getSpeed().toggleXDirection();
@@ -158,6 +160,10 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             ball.getSpeed().toggleXDirection();
             ball.getSpeed().toggleYDirection();
         }
+        /*if (ball.getSpriteRect().intersect(getSpriteLineRect())){
+            ball.getSpeed().toggleXDirection();
+            ball.getSpeed().toggleYDirection();
+        }*/
     }
 
     public Rect getSpriteLineRect(){
