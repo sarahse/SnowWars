@@ -6,8 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
+import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -206,9 +209,71 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     /* handles the player's movement
      * if the player is pressed, set touched to true and move the player where it's dragged
      * if the player is released, set touched to false and drop the player */
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        if (event.getAction() == MotionEvent.ACTION_UP) {
+        int action = event.getAction() & MotionEvent.ACTION_MASK;
+        int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
+        int pointerId = event.getPointerId(pointerIndex);
+
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_POINTER_DOWN:
+                if (pointerId == 0){
+                    player1.setTouched(true); /* fingerOneDown = 1*/
+                    player1.setPositionX((int)event.getX(pointerIndex)); /* fingerOneX = event.getX(pointerIndex) */
+                }
+                if (pointerId == 1){
+                    player2.setTouched(true); /* fingerTwoDown = 1 */
+                    player2.setPositionX((int)event.getX(pointerIndex));
+                }
+                break;
+
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_POINTER_UP:
+            case MotionEvent.ACTION_CANCEL:
+                if (pointerId == 0){
+                    player1.setTouched(false);
+                    player1.setPositionX((int)event.getX(pointerIndex));
+                }
+                if (pointerId == 1){
+                    player2.setTouched(false);
+                    player2.setPositionX((int)event.getX(pointerIndex));
+                }
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+
+                int pointerCount = event.getPointerCount();
+                for(int i = 0; i < pointerCount; i++){
+                    pointerIndex = i;
+                    pointerId = event.getPointerId(pointerIndex);
+
+                    if (pointerId == 0){
+                        player1.setTouched(true);
+                        player1.setPositionX((int)event.getX(pointerIndex));
+                        if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
+                            player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
+                        }
+                    }
+                    if (pointerId == 1){
+                        player2.setTouched(true);
+                        player2.setPositionX((int)event.getX(pointerIndex));
+                        if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
+                            player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
+                        }
+                        if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
+                            player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
+                        }
+                    }
+                }
+                break;
+        }
+        return true;
+    }
+
+        /************************************************/
+        /*if (event.getAction() == MotionEvent.ACTION_UP) {
 
             if (player1.isTouched()) {
                 player1.setTouched(false);
@@ -220,56 +285,32 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
 
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                player1.handleActionDown((int) event.getX(), (int) event.getY());
-                if (player1.isTouched()) {
-                    player1.setPositionX((int) event.getX());
-                /* checks if the player touches the net */
-                    if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
-                        player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
-                    }
-                }
 
-                player2.handleActionDown((int) event.getX(), (int) event.getY());
-                if (player2.isTouched()) {
-                    player2.setPositionX((int) event.getX());
+            player1.handleActionDown((int) event.getX(), (int) event.getY());
+            if (player1.isTouched()) {
+                player1.setPositionX((int) event.getX());
                 /* checks if the player touches the net */
-                    if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
-                        player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
-                    }
-                /* checks if the player goes out of the screen */
-                    if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
-                        player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
-                    }
+                /*if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
+                    player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
                 }
             }
-            if (event.getAction() == MotionEvent.ACTION_POINTER_DOWN){
-                player1.handleActionPointerDown((int) event.getX(), (int) event.getY());
-                if (player1.isTouched()) {
-                    player1.setPositionX((int) event.getX());
-                /* checks if the player touches the net */
-                    if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
-                        player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
-                    }
-                }
 
-                player2.handleActionPointerDown((int) event.getX(), (int) event.getY());
-                if (player2.isTouched()) {
-                    player2.setPositionX((int) event.getX());
+            player2.handleActionDown((int) event.getX(), (int) event.getY());
+            if (player2.isTouched()) {
+                player2.setPositionX((int) event.getX());
                 /* checks if the player touches the net */
-                    if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
-                        player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
-                    }
+               /* if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
+                    player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
+                }
                 /* checks if the player goes out of the screen */
-                    if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
-                        player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
-                    }
+             /*   if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
+                    player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
                 }
             }
         }
 
         return true;
-    }
+    }*/
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
