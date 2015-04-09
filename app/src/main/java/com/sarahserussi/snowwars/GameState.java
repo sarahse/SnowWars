@@ -142,7 +142,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             /* Ball hits left side */
             if (ball.getBallPositionX() + ball.getBitmap().getWidth() < (getScreenWidth()/2)) {
                 /* Set servePosition to player 1 */
-                ball.setServePositionToPlayer1();
+                //ball.setServePositionToPlayer1();
+                ball.setBallPositionX(200);
+                ball.setBallPositionY(200);
                 /* Set ballVelocity */
                 ball.setSpeed(new Speed(0, -10));
                 /* Update score player 2 */
