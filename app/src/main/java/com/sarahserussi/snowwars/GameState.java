@@ -24,6 +24,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private GameLoopThread gameLoopThread;
     private Speed speed;
     private Bitmap verticalLine;
+    private Score score;
 
     /* Where the touch methods go */
      /* init */
@@ -137,7 +138,28 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         if (ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
                 && ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()) {
             //moveBallToServePosition(player1,player2);
-            ball.getSpeed().toggleYDirection();
+
+            /* Ball hits left side */
+            if (ball.getBallPositionX() + ball.getBitmap().getWidth() < (getScreenWidth()/2)) {
+                /* Set servePosition to player 1 */
+                ball.setServePositionToPlayer1();
+                /* Set ballVelocity */
+                ball.setSpeed(new Speed(0, -10));
+                /* Update score player 2 */
+                score.addPoint(player2);
+            }
+
+            /* Ball hits right side */
+            if (ball.getBallPositionX() + ball.getBitmap().getWidth() > (getScreenWidth()/2)) {
+                /* Set servePosition to player 2 */
+                ball.setServePositionToPlayer2();
+                /* Set ballVelocity */
+                ball.setSpeed(new Speed(0, -10));
+                /* Update score player 1 */
+                score.addPoint(player1);
+            }
+
+            //ball.getSpeed().toggleYDirection();
         }
     }
 
