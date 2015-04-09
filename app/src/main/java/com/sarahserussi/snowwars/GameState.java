@@ -32,12 +32,12 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         //create player and load bitmap
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerright),
-                (getScreenWidth(context) / 40), getScreenHeight(context) / 2); //set player position
+                (getScreenWidth(context) / 40), getScreenHeight(context) * 5 / 8); //set player position
         player1.setSpriteWidth(getScreenWidth(context)/5);
         player1.setSpriteHeight(getScreenHeight(context)/3);
 
         player2 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerleft),
-                ((getScreenWidth(context) * 31) / 40), getScreenHeight(context) / 2); //set player position
+                ((getScreenWidth(context) * 31) / 40), getScreenHeight(context) * 5 / 8); //set player position
         player2.setSpriteWidth(getScreenWidth(context)/5);
         player2.setSpriteHeight(getScreenHeight(context)/3);
 
@@ -157,6 +157,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             ball.getSpeed().toggleYDirection();
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())){
+
             ball.getSpeed().toggleXDirection();
             ball.getSpeed().toggleYDirection();
         }
