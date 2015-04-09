@@ -194,7 +194,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 player2.setTouched(false);
             }
         }
-        if (event.getAction() == MotionEvent.ACTION_DOWN){
+
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             player1.handleActionDown((int) event.getX(), (int) event.getY());
             if (player1.isTouched()) {
@@ -218,7 +218,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 }
             }
         }
-        }
+
 
         if (event.getAction() == MotionEvent.ACTION_POINTER_DOWN){
             if (event.getAction() == MotionEvent.ACTION_MOVE) {
