@@ -312,6 +312,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         return true;
     }*/
 
+    // Observer functions in here
+
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         gameLoopThread.setRunning(true);

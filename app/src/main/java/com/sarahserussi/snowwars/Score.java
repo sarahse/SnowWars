@@ -3,6 +3,7 @@ package com.sarahserussi.snowwars;
 /**
  * Created by sarahserussi on 12.03.15.
  */
+
 public class Score {
 
     Player player1;
@@ -18,6 +19,7 @@ public class Score {
     }
 
     /* add point to player's score */
+
     public void addPoint(Player player){
         if (player == player1){
             player1Score++;
@@ -25,7 +27,6 @@ public class Score {
             player2Score++;
         }
     }
-
     public Player whoWon(Player player){
         if (player == player1 && player1Score == 5){
             /* end game and set player1 as winner */
@@ -36,4 +37,6 @@ public class Score {
         }
         return null;
     }
+
+
 }
