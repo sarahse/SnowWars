@@ -218,6 +218,30 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 }
             }
         }
+
+        if (event.getAction() == MotionEvent.ACTION_POINTER_DOWN){
+            player1.handleActionPointerDown((int) event.getX(), (int) event.getY());
+            if (player1.isTouched() ) {
+                player1.setPositionX((int) event.getX());
+                /* checks if the player touches the net */
+                if (player1.getSpriteRect().intersect(getSpriteLineRect())){
+                    player1.setPositionX((getScreenWidth()/2-player1.getSpriteRect().width()-(verticalLine.getWidth()/2)));
+                }
+            }
+
+            player2.handleActionPointerDown((int) event.getX(), (int) event.getY());
+            if (player2.isTouched()) {
+                player2.setPositionX((int) event.getX());
+                /* checks if the player touches the net */
+                if (player2.getSpriteRect().intersect(getSpriteLineRect())){
+                    player2.setPositionX((getScreenWidth()/2)+(verticalLine.getWidth()/2));
+                }
+                /* checks if the player goes out of the screen */
+                if ((player2.getPositionX()+player2.getSpriteRect().width()) >= getScreenWidth()){
+                    player2.setPositionX(getScreenWidth()-player2.getSpriteRect().width());
+                }
+            }
+        }
         return true;
     }
 
