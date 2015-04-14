@@ -38,9 +38,11 @@ public class Ball {
 
     public void update(){
         ballPositionX += (speed.getxVelocity() * speed.getxDirection());
-        ballPositionY += (speed.getyVelocity() * speed.getyDirection());
+        //ballPositionY += (speed.getyVelocity() * speed.getyDirection());
+        ballPositionY += speed.getyVelocity();
         //this.setBallPositionX(ballPositionX);
         //this.setBallPositionY(ballPositionY);
+        speed.setyVelocity(getSpeed().getyVelocity() + (float)0.6);
     }
 
     public void setServePositionToPlayer1() {

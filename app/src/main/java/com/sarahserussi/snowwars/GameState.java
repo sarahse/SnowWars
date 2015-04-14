@@ -50,7 +50,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 getScreenWidth(context) / 5, getScreenHeight(context) / 5); //set ball position
         ball.setSpriteHeight(getScreenHeight(context)/7);
         ball.setSpriteWidth(getScreenHeight(context)/7);
-        ball.setSpeed(new Speed(15,15));
+        ball.setSpeed(new Speed(16,0));
         update();
 
         //make the game focusable so it can handle events
@@ -145,6 +145,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     /* check if the ball collides with the bottom wall */
     public void checkBottomWallCollision() {
+        if(ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()){
+            ball.setBallPositionY(20);
+        }
         if (ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
                 && ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()) {
             //moveBallToServePosition(player1,player2);
@@ -197,12 +200,14 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public void checkIntersect(){
         if (ball.getSpriteRect().intersect(player1.getSpriteRect())){
             ball.getSpeed().toggleXDirection();
-            ball.getSpeed().toggleYDirection();
+            //ball.getSpeed().toggleYDirection();
+            ball.getSpeed().setyVelocity(-15);
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())){
 
             ball.getSpeed().toggleXDirection();
-            ball.getSpeed().toggleYDirection();
+            //ball.getSpeed().toggleYDirection();
+            ball.getSpeed().setyVelocity(-15);
         }
         /*if (ball.getSpriteRect().intersect(getSpriteLineRect())){
             ball.getSpeed().toggleXDirection();
