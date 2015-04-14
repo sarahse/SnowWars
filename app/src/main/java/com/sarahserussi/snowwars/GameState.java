@@ -294,6 +294,10 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 for(int i = 0; i < pointerCount; i++) {
                     pointerIndex = i;
                     pointerId = event.getPointerId(pointerIndex);
+
+                    player1.checkPlayerTouched((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+                    player2.checkPlayerTouched((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+
                     if (pointerId == 0){
 
                         if (player1.isTouched()){
