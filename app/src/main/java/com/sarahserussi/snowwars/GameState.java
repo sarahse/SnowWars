@@ -241,37 +241,32 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
 
-                if (pointerId == 0 && player1.isTouched() || pointerId == 1 && player1.isTouched()){
-
-                        player1.setTouched(true);
-                        player1.setPositionX((int)event.getX(pointerIndex));
-
-                } else if (pointerId == 0 && player2.isTouched() || pointerId == 1 && player2.isTouched()){
-                        player2.setTouched(true);
-                        player2.setPositionX((int)event.getX(pointerIndex));
-                }
-                /*
-                if (pointerId == 1){
+                if (pointerId == 0){
 
                     if (player1.isTouched()){
                         player1.setTouched(true);
-                        player1.setPositionX((int)event.getX(pointerIndex));
+                        player1.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
 
                     } else if (player2.isTouched()){
-                        player2.setTouched(true);
+                        player2.setTouched(true); // fingerTwoDown = 1
                         player2.setPositionX((int)event.getX(pointerIndex));
                     }
-                }*/
+                }
+                if (pointerId == 1){
+
+                    player2.setTouched(true); // fingerTwoDown = 1
+                    player2.setPositionX((int)event.getX(pointerIndex));
+                }
                 break;
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_CANCEL:
-                if (pointerId == 0 && player1.isTouched() || pointerId == 1 && player1.isTouched()){
+                if (pointerId == 0){
                     player1.setTouched(false);
                     player1.setPositionX((int)event.getX(pointerIndex));
                 }
-                if (pointerId == 0 && player2.isTouched() || pointerId == 1 && player2.isTouched()){
+                if (pointerId == 1){
                     player2.setTouched(false);
                     player2.setPositionX((int)event.getX(pointerIndex));
                 }
@@ -284,14 +279,14 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                     pointerIndex = i;
                     pointerId = event.getPointerId(pointerIndex);
 
-                    if (pointerId == 0 && player1.isTouched() || pointerId == 1 && player1.isTouched()){
+                    if (pointerId == 0){
                         player1.setTouched(true);
                         player1.setPositionX((int)event.getX(pointerIndex));
                         if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
                             player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
                         }
                     }
-                    if (pointerId == 0 && player2.isTouched() || pointerId == 1 && player2.isTouched()){
+                    if (pointerId == 1){
                         player2.setTouched(true);
                         player2.setPositionX((int)event.getX(pointerIndex));
                         if (player2.getSpriteRect().intersect(getSpriteLineRect())) {

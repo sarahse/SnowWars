@@ -40,7 +40,7 @@ public class GameLogic {
     }
 
     /* method that checks if the ball is dropped on the ground and gives point to the winning player*/
-    private boolean checkBallDroppedAndGivePoints(){
+    /*private boolean checkBallDroppedAndGivePoints(){
         if (ball.getBallPositionY() >= screenHeight){
             if (checkSideOfBall() == -1){
                 score.addPoint(player2);
@@ -51,10 +51,10 @@ public class GameLogic {
         } else {
             return false;
         }
-    }
+    }*/
 
     /* check if a player has won */
-    private boolean hasWon(Player player){
+    /*private boolean hasWon(Player player){
         if (player == player1 && score.whoWon(player) == player1) {
             return true;
         } else if (player == player2 && score.whoWon(player) == player2){
@@ -92,11 +92,11 @@ public class GameLogic {
 
     }
 
-    public void moveBallToServePosition(Player player1, Player player2){
+   /* public void moveBallToServePosition(Player player1, Player player2){
         if (hasWon(player1)){
             ball.setServePositionToPlayer1();
         } else if (hasWon(player2)){
             ball.setServePositionToPlayer2();
         }
-    }
+    }*/
 }
