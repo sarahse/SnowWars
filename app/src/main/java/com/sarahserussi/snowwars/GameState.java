@@ -334,7 +334,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         return true;
     }*/
 
-    // Observer functions in here
+    // Notify observer about the score
     public void notifyObserver(int player){
         if(player == 1){
             score.addScoreToPlayer1();
