@@ -248,7 +248,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                     if (player2.isTouched()){
                         player2.setPositionX((int)event.getX(pointerIndex));
                     }
-                } else if (pointerId == 1){
+                }
+                if (pointerId == 1){
 
                     if (player1.isTouched()){
                         player1.setPositionX((int)event.getX(pointerIndex));
@@ -301,7 +302,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                         if (player2.isTouched()){
                             player2.setPositionX((int)event.getX(pointerIndex));
                         }
-                    } else if (pointerId == 1){
+                    }
+                    if (pointerId == 1){
 
                         if (player1.isTouched()){
                             player1.setPositionX((int)event.getX(pointerIndex));
