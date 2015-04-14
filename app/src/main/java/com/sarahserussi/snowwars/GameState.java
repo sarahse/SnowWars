@@ -9,11 +9,15 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.ImageView;
+
+import java.util.ArrayList;
 
 /**
  * Created by sarahserussi on 12.03.15.
@@ -28,6 +32,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private Speed speed;
     private Bitmap verticalLine;
     private Score score;
+    private ArrayList<Score> observerList;
 
     /* Where the touch methods go */
      /* init */
@@ -50,7 +55,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 getScreenWidth(context) / 5, getScreenHeight(context) / 5); //set ball position
         ball.setSpriteHeight(getScreenHeight(context)/7);
         ball.setSpriteWidth(getScreenHeight(context)/7);
-        ball.setSpeed(new Speed(30,30));
+        ball.setSpeed(new Speed(15,15));
         update();
 
         //make the game focusable so it can handle events
@@ -65,6 +70,11 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         //set servePos
         //add background
         //set new score
+        score = new Score();
+        observerList = new ArrayList<Score>();
+        observerList.add(score);
+
+
     }
 
     public int getScreenWidth() {
@@ -112,7 +122,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         verticalLine = BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2);
 
         //canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
-        canvas.drawColor(Color.WHITE);
+        canvas.drawColor(Color.YELLOW);
+
+
         canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2), (getScreenWidth()/2-verticalLine.getWidth()/2), (getScreenHeight()-verticalLine.getHeight()), null);
         player1.draw(canvas);
         player2.draw(canvas);
@@ -142,8 +154,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 && ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()) {
             //moveBallToServePosition(player1,player2);
 
-            /* Ball hits left side */
-            /*if (ball.getBallPositionX() + ball.getBitmap().getWidth() < (getScreenWidth()/2)) {
+            /* Ball hits left side - give point to player 2 */
+            if (ball.getBallPositionX() + ball.getBitmap().getWidth() < (getScreenWidth()/2)) {
                 /* Set servePosition to player 1 */
                 //ball.setServePositionToPlayer1();
                /* ball.setBallPositionX(200);
@@ -151,18 +163,27 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 /* Set ballVelocity */
                /* ball.setSpeed(new Speed(0, -10));
                 /* Update score player 2 */
-               /* score.addPoint(player2);
+               // score.addPoint(player2);
+
+                notifyObserver(2);
             }
 
-            /* Ball hits right side */
-            /*if (ball.getBallPositionX() + ball.getBitmap().getWidth() > (getScreenWidth()/2)) {
+            /* Ball hits right side - give point to player 1 */
+            if (ball.getBallPositionX() + ball.getBitmap().getWidth() > (getScreenWidth()/2)) {
                 /* Set servePosition to player 2 */
             /*    ball.setServePositionToPlayer2();
                 /* Set ballVelocity */
             /*    ball.setSpeed(new Speed(0, -10));
                 /* Update score player 1 */
-            /*    score.addPoint(player1);
-            }*/
+            /*    score.addPoint(player1);*/
+
+
+
+                notifyObserver(1);
+
+            }
+
+
 
             ball.getSpeed().toggleYDirection();
         }
@@ -192,6 +213,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             ball.getSpeed().toggleXDirection();
             ball.getSpeed().toggleYDirection();
         }*/
+
     }
 
     public Rect getSpriteLineRect(){
@@ -313,6 +335,16 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     }*/
 
     // Observer functions in here
+    public void notifyObserver(int player){
+        if(player == 1){
+            score.addScoreToPlayer1();
+            System.out.println("poeng til spiller 1");
+        }
+        if(player == 2){
+            score.addScoreToPlayer2();
+            System.out.println("poeng til spiller 2");
+        }
+    }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -337,4 +369,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
         }
     }
+
+
 }
