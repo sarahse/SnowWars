@@ -36,7 +36,7 @@ public class Player {
     }
 
     /* move left and right */
-    public void handleActionDown(int eventX, int eventY) {
+    public void checkPlayerTouched(int eventX, int eventY) {
         if (eventX >= (positionX - bitmap.getWidth() / 2)
                 && (eventX <= (positionX + bitmap.getHeight() / 2))) {
             if (eventY >= (positionY - bitmap.getHeight() / 2)
