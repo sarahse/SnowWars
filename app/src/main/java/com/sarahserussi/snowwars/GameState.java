@@ -238,8 +238,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         int pointerPosX = (int)event.getX(pointerIndex);
 
         switch (action) {
-            /*case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
+            case MotionEvent.ACTION_MOVE:
 
 
                 if(pointerPosX < getScreenWidth()/2){
@@ -305,7 +306,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 }
 
 
-                break;*/
+                break;
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
@@ -332,9 +333,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 }
                 break;
 
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_POINTER_DOWN:
-            case MotionEvent.ACTION_MOVE:
+            /*case MotionEvent.ACTION_MOVE:
 
                 int pointerCount = event.getPointerCount();
                 for(int i = 0; i < pointerCount; i++){
@@ -393,7 +392,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                         }
                     }
                 }
-                break;
+                break;*/
         }
         return true;
     }
