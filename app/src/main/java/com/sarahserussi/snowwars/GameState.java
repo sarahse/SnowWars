@@ -37,6 +37,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         super(context);
 
         //create player and load bitmap
+        setBackgroundResource(R.drawable.winterbackground2);
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerright),
                 (getScreenWidth(context) / 40), getScreenHeight(context) * 5 / 8); //set player position
         player1.setSpriteWidth(getScreenWidth(context)/5);
@@ -53,7 +54,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         ball.setSpriteHeight(getScreenHeight(context)/7);
         ball.setSpriteWidth(getScreenHeight(context)/7);
         ball.setSpeed(new Speed(15,15));
-        setBackgroundResource(R.drawable.winterbackground2);
         update();
 
         //make the game focusable so it can handle events
