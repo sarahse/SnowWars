@@ -244,7 +244,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 if(pointerPosX < getScreenWidth()/2){
                     if (pointerId == 0){
 
-                        player1.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+                        player1.handleActionDown((int)event.getX(), (int)event.getY());
 
                         if (player1.isTouched()){
                             //player1.setTouched(true);
@@ -252,7 +252,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                             if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
                                 player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
                             } else {
-                                player1.setPositionX((int)event.getX(pointerIndex));
+                                player1.setPositionX((int)event.getX());
                             }
                         }
                     }
@@ -263,7 +263,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                             if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
                                 player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
                             } else {
-                                player1.setPositionX((int)event.getX(pointerIndex));
+                                player1.setPositionX((int)event.getX());
                             }
                         }
                     }
@@ -271,7 +271,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
                     if (pointerId == 0){
 
-                        player2.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+                        player2.handleActionDown((int)event.getX(), (int)event.getY());
 
                         if (player2.isTouched()){
                             //player1.setTouched(true);
@@ -279,7 +279,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                             if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
                                 player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
                             } else {
-                                player2.setPositionX((int)event.getX(pointerIndex));
+                                player2.setPositionX((int)event.getX());
                             }
                             if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
                                 player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
@@ -293,7 +293,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                             if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
                                 player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
                             } else {
-                                player2.setPositionX((int)event.getX(pointerIndex));
+                                player2.setPositionX((int)event.getX());
                             }
                             if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
                                 player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
@@ -311,21 +311,21 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 if (pointerId == 0){
                     if (player1.isTouched()){
                         player1.setTouched(false);
-                        player1.setPositionX((int)event.getX(pointerIndex));
+                        player1.setPositionX((int)event.getX());
                     }
                     if (player2.isTouched()){
                         player2.setTouched(false);
-                        player2.setPositionX((int)event.getX(pointerIndex));
+                        player2.setPositionX((int)event.getX());
                     }
                 }
                 if (pointerId == 1){
                     if (player1.isTouched()){
                         player1.setTouched(false);
-                        player1.setPositionX((int)event.getX(pointerIndex));
+                        player1.setPositionX((int)event.getX());
                     }
                     if (player2.isTouched()){
                         player2.setTouched(false);
-                        player2.setPositionX((int)event.getX(pointerIndex));
+                        player2.setPositionX((int)event.getX());
                     }
                 }
                 break;
@@ -340,7 +340,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                     if(pointerPosX < getScreenWidth()/2){
                         if (pointerId == 0){
 
-                            player1.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+                            player1.handleActionDown((int)event.getX(), (int)event.getY());
 
                             if (player1.isTouched()){
                                 //player1.setTouched(true);
@@ -348,7 +348,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                                 if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
                                     player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
                                 } else {
-                                    player1.setPositionX((int)event.getX(pointerIndex));
+                                    player1.setPositionX((int)event.getX());
                                 }
                             }
                         }
@@ -359,7 +359,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                                 if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
                                     player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
                                 } else {
-                                    player1.setPositionX((int)event.getX(pointerIndex));
+                                    player1.setPositionX((int)event.getX());
                                 }
                             }
                         }
@@ -367,7 +367,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
                         if (pointerId == 0){
 
-                            player2.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+                            player2.handleActionDown((int)event.getX(), (int)event.getY());
 
                             if (player2.isTouched()){
                                 //player1.setTouched(true);
@@ -375,7 +375,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                                 if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
                                     player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
                                 } else {
-                                    player2.setPositionX((int)event.getX(pointerIndex));
+                                    player2.setPositionX((int)event.getX());
                                 }
                                 if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
                                     player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
@@ -389,7 +389,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                                 if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
                                     player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
                                 } else {
-                                    player2.setPositionX((int)event.getX(pointerIndex));
+                                    player2.setPositionX((int)event.getX());
                                 }
                                 if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
                                     player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
