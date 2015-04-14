@@ -53,6 +53,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         ball.setSpriteHeight(getScreenHeight(context)/7);
         ball.setSpriteWidth(getScreenHeight(context)/7);
         ball.setSpeed(new Speed(15,15));
+        setBackgroundResource(R.drawable.winterbackground2);
         update();
 
         //make the game focusable so it can handle events
