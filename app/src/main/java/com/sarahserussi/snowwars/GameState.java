@@ -6,12 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
-import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -234,6 +231,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
+
         int action = event.getAction() & MotionEvent.ACTION_MASK;
         int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
         int pointerId = event.getPointerId(pointerIndex);
@@ -241,12 +239,15 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         switch (action) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
+                if(player1.isTouched()) pointerId = 0;
+                if(player2.isTouched()) pointerId = 1;
+
                 if (pointerId == 0){
-                    player1.setTouched(true); /* fingerOneDown = 1*/
-                    player1.setPositionX((int)event.getX(pointerIndex)); /* fingerOneX = event.getX(pointerIndex) */
+                    player1.setTouched(true); // fingerOneDown = 1
+                    player1.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
                 }
                 if (pointerId == 1){
-                    player2.setTouched(true); /* fingerTwoDown = 1 */
+                    player2.setTouched(true); // fingerTwoDown = 1
                     player2.setPositionX((int)event.getX(pointerIndex));
                 }
                 break;
