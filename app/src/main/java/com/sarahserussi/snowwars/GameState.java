@@ -235,73 +235,150 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         int action = event.getAction() & MotionEvent.ACTION_MASK;
         int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
         int pointerId = event.getPointerId(pointerIndex);
+        int pointerPosX = (int)event.getX(pointerIndex);
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
 
-                if (pointerId == 0){
+                if(pointerPosX < getScreenWidth()/2){
+                    if (pointerId == 0){
 
-                    player1.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
-                    player2.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+                        player1.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
 
-                    if (player1.isTouched()){
-                        player1.setTouched(true);
-                        player1.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
-                        if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
-                            player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
+                        if (player1.isTouched()){
+                            //player1.setTouched(true);
+                            player1.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
+                            if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
+                                player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
+                            }
                         }
+                    }
+                    if (pointerId == 1){
+                        if (player1.isTouched()){
+                            //player1.setTouched(true);
+                            player1.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
+                            if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
+                                player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
+                            }
+                        }
+                    }
+                } else if (pointerPosX > getScreenWidth()/2) {
 
-                    } else if (player2.isTouched()){
-                        player2.setTouched(true); // fingerTwoDown = 1
-                        player2.setPositionX((int)event.getX(pointerIndex));
+                    if (pointerId == 0){
+
+                        player2.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+
+                        if (player2.isTouched()){
+                            //player1.setTouched(true);
+                            player2.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
+                            if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
+                                player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
+                            }
+                            if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
+                                player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
+                            }
+                        }
+                    }
+                    if (pointerId == 1){
+                        if (player2.isTouched()){
+                            //player1.setTouched(true);
+                            player2.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
+                            if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
+                                player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
+                            }
+                            if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
+                                player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
+                            }
+                        }
                     }
                 }
-                if (pointerId == 1){
 
-                    player2.setTouched(true); // fingerTwoDown = 1
-                    player2.setPositionX((int)event.getX(pointerIndex));
-                }
+
                 break;
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_CANCEL:
                 if (pointerId == 0){
-                    player1.setTouched(false);
-                    player1.setPositionX((int)event.getX(pointerIndex));
+                    if (player1.isTouched()){
+                        player1.setTouched(false);
+                        player1.setPositionX((int)event.getX(pointerIndex));
+                    }
+                    if (player2.isTouched()){
+                        player2.setTouched(false);
+                        player2.setPositionX((int)event.getX(pointerIndex));
+                    }
                 }
                 if (pointerId == 1){
-                    player2.setTouched(false);
-                    player2.setPositionX((int)event.getX(pointerIndex));
+                    if (player1.isTouched()){
+                        player1.setTouched(false);
+                        player1.setPositionX((int)event.getX(pointerIndex));
+                    }
+                    if (player2.isTouched()){
+                        player2.setTouched(false);
+                        player2.setPositionX((int)event.getX(pointerIndex));
+                    }
                 }
                 break;
 
             case MotionEvent.ACTION_MOVE:
-
-                player1.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
-                player2.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
 
                 int pointerCount = event.getPointerCount();
                 for(int i = 0; i < pointerCount; i++){
                     pointerIndex = i;
                     pointerId = event.getPointerId(pointerIndex);
 
-                    if (pointerId == 0){
-                        player1.setTouched(true);
-                        player1.setPositionX((int)event.getX(pointerIndex));
-                        if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
-                            player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
+                    if(pointerPosX < getScreenWidth()/2){
+                        if (pointerId == 0){
+
+                            player1.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+
+                            if (player1.isTouched()){
+                                //player1.setTouched(true);
+                                player1.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
+                                if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
+                                    player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
+                                }
+                            }
                         }
-                    }
-                    if (pointerId == 1){
-                        player2.setTouched(true);
-                        player2.setPositionX((int)event.getX(pointerIndex));
-                        if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
-                            player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
+                        if (pointerId == 1){
+                            if (player1.isTouched()){
+                                //player1.setTouched(true);
+                                player1.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
+                                if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
+                                    player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
+                                }
+                            }
                         }
-                        if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
-                            player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
+                    } else if (pointerPosX > getScreenWidth()/2) {
+
+                        if (pointerId == 0){
+
+                            player2.handleActionDown((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+
+                            if (player2.isTouched()){
+                                //player1.setTouched(true);
+                                player2.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
+                                if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
+                                    player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
+                                }
+                                if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
+                                    player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
+                                }
+                            }
+                        }
+                        if (pointerId == 1){
+                            if (player2.isTouched()){
+                                //player1.setTouched(true);
+                                player2.setPositionX((int)event.getX(pointerIndex)); // fingerOneX = event.getX(pointerIndex)
+                                if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
+                                    player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
+                                }
+                                if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
+                                    player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
+                                }
+                            }
                         }
                     }
                 }
