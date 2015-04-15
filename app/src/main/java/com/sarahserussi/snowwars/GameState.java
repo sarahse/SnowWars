@@ -299,7 +299,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     private void checkPlayer2TouchedAndSetPosition(Player player2, MotionEvent event, int pointerIndex) {
 
-        if (player2.isPlayer2InLane()){
             if (player2.isTouched()){
                 player2.setPositionX((int)event.getX(pointerIndex)-100);
                 if (player2.getSpriteRect().intersect(line.getSpriteRect())) {
@@ -309,26 +308,19 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                     player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
                 }
             }
-        } else {
-            player2.setPositionX((getScreenWidth() / 2 +  (line.getSpriteWidth()) + 20));
         }
 
-    }
 
     private void checkPlayer1TouchedAndSetPosition(Player player1, MotionEvent event, int pointerIndex) {
 
-        if (player1.isPlayer1InLane()){
             if (player1.isTouched()){
                 player1.setPositionX((int)event.getX(pointerIndex)-100);
                 if (player1.getSpriteRect().intersect(line.getSpriteRect())) {
                     player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (line.getSpriteWidth() / 2) - 10));
                 }
             }
-        } else {
-            player1.setPositionX(0);
         }
 
-    }
 
     public int getScreenWidth() {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
