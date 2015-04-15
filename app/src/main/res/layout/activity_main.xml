@@ -14,13 +14,15 @@
         android:id="@+id/startButton"
         android:layout_above="@+id/rulesButton"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentStart="false" />
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false"/>
+
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rules"
+        android:text="Rules!"
         android:id="@+id/rulesButton"
         android:layout_centerVertical="true"
         android:layout_alignRight="@+id/startButton"
