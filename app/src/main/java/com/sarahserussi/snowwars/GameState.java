@@ -304,8 +304,12 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 if (player2.getSpriteRect().intersect(line.getSpriteRect())) {
                     player2.setPositionX((getScreenWidth() / 2 +  (line.getSpriteWidth()) + 20));
                 }
-                if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
-                    player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
+                if (player2.isPlayer2InLane()){
+                    if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
+                        player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
+                    }
+                } else {
+                    player2.setPositionX(getScreenWidth() / 2 + (line.getSpriteWidth()) + 20);
                 }
             }
         }
