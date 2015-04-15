@@ -47,6 +47,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     /* start game */
     @Override
     public void onClick(View v) {
+
         switch(v.getId()){
             case R.id.startButton:
                 View textLoading = findViewById(R.id.textLoading);

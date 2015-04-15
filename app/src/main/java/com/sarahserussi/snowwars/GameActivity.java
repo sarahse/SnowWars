@@ -19,9 +19,13 @@ public class GameActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        gameState = new GameState(this);
-        setContentView(gameState);
-        gameState.requestFocus();
+
+            gameState = new GameState(this);
+
+            setContentView(gameState);
+            gameState.requestFocus();
+
+
     }
 }
 

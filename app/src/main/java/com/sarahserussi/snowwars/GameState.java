@@ -1,6 +1,7 @@
 package com.sarahserussi.snowwars;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
  */
 public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
-    private Player player1, player2;
+    private Player player,player1, player2;
     private Ball ball;
     private Line line;
     private SurfaceHolder holder;
@@ -34,6 +35,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private ArrayList<Score> observerList;
     private ImageView myImageView;
     private int screenWidth, screenHeight;
+    private boolean endGame, player1Wins, player2Wins;
 
     /* Where the touch methods go */
      /* init */
@@ -119,14 +121,22 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     public void render(Canvas canvas) {
 
-        //canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
-        canvas.drawColor(Color.YELLOW);
+            canvas.drawColor(Color.YELLOW);
 
-        player1.draw(canvas);
-        player2.draw(canvas);
-        ball.draw(canvas);
-        line.draw(canvas);
-        drawText(canvas);
+            player1.draw(canvas);
+            player2.draw(canvas);
+            ball.draw(canvas);
+            line.draw(canvas);
+            drawText(canvas);
+
+            if(endGame && player1Wins){
+                endText(canvas, player1);
+            }
+        if(endGame && player2Wins){
+            endText(canvas, player2);
+        }
+        //canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
+
 
 
     }
@@ -354,9 +364,22 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public void notifyObserver(int player){
         if(player == 1){
             score.addScoreToPlayer1();
+            if(score.getPlayer1Score() == 3){
+                //stop game
+
+                endGame = true;
+                player1Wins = true;
+                //gameLoopThread.setRunning(false);
+            }
         }
         if(player == 2){
             score.addScoreToPlayer2();
+            if (score.getPlayer2Score() == 3){
+
+                endGame = true;
+                player2Wins = true;
+                //gameLoopThread.setRunning(false);
+            }
 
         }
     }
@@ -376,11 +399,11 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         can.drawText(""+score.getPlayer2Score(), getScreenWidth()/2+getScreenWidth()/10, getScreenHeight()/6,scoreTxt);
     }
 
-    private void endText(Canvas can){
+    private void endText(Canvas can, Player player){
         Paint txt = new Paint();
         txt.setColor(Color.LTGRAY);
         txt.setTextSize(getScreenWidth()/20);
-        can.drawText("The winner is ", getScreenWidth()/3, getScreenHeight()/3, txt);
+        can.drawText("The winner is " + player + " !", getScreenWidth()/3, getScreenHeight()/3, txt);
     }
 
     @Override
