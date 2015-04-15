@@ -22,8 +22,7 @@ public class Line {
         spriteHeight = bitmap.getHeight();
         spriteWidth = bitmap.getWidth();
         sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
-        this.setLinePositionX(960);
-        this.setLinePositionY(540);
+
     }
 
     public void draw(Canvas canvas) {

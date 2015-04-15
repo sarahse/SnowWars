@@ -289,7 +289,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         if (player2.isTouched()){
             player2.setPositionX((int)event.getX(pointerIndex)-100);
             if (player2.getSpriteRect().intersect(line.getSpriteRect())) {
-                player2.setPositionX((getScreenWidth() / 2 +  (line.getSpriteWidth() / 2) + 10));
+                player2.setPositionX((getScreenWidth() / 2 +  (line.getSpriteWidth())));
             }
             if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
                 player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
