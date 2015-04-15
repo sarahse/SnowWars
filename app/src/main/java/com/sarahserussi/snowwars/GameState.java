@@ -33,6 +33,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private Score score;
     private ArrayList<Score> observerList;
     private ImageView myImageView;
+    private int screenWidth, screenHeight;
 
     /* Where the touch methods go */
      /* init */
@@ -92,6 +93,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         score = new Score();
         observerList = new ArrayList<Score>();
         observerList.add(score);
+        screenWidth = getScreenWidth(context);
+        screenHeight = getScreenHeight(context);
 
     }
 
@@ -152,14 +155,12 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             // ball hits left side of net - give point to player 2
             if(ball.getBallPositionX()+ball.getBitmap().getWidth() < (getScreenWidth()/2)){
                 notifyObserver(2);
-                ball.setBallPositionY(getScreenHeight()/3);
-                ball.setBallPositionX(getScreenWidth()/4);
+                ball.setServePositionToPlayer2(screenWidth, screenHeight);
             }
             // ball hits right side of net - give point to player 1
             else if(ball.getBallPositionX()+ball.getBitmap().getWidth()>(getScreenWidth()/2)){
                 notifyObserver(1);
-                ball.setBallPositionX(getScreenWidth()*3/4);
-                ball.setBallPositionY(getScreenHeight()/3);
+                ball.setServePositionToPlayer1(screenWidth, screenHeight);
             }
 
 

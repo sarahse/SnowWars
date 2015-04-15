@@ -52,6 +52,9 @@ public class Ball {
         /* need to get screenWidth & screenHeight */
         this.setBallPositionX(screenWidth/4);
         this.setBallPositionY(screenHeight * 5/8);
+        this.getSpeed().setxVelocity(0);
+        this.getSpeed().setyVelocity(0);
+        this.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
 
     }
 
@@ -59,6 +62,9 @@ public class Ball {
         /* need to get screenWidth & screenHeight */
         this.setBallPositionX(3 * screenWidth/4);
         this.setBallPositionY(screenHeight * 5/8);
+        this.getSpeed().setxVelocity(0);
+        this.getSpeed().setyVelocity(0);
+        this.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
     }
 
     /* checks if the ball touches the player, needs editing (bitmapRect) */
