@@ -1,9 +1,11 @@
 package com.sarahserussi.snowwars;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.util.DisplayMetrics;
 
 /**
  * Created by sarahserussi on 12.03.15.
@@ -128,7 +130,35 @@ public class Player {
         this.sourceRect = sourceRect;
     }
 
+    public int getScreenWidth() {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        return width;
+    }
+
+    public int getScreenHeight() {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        int height = metrics.heightPixels;
+        return height;
+    }
+
     public Rect getSpriteRect(){
         return new Rect(getPositionX(), getPositionY(), getPositionX() + spriteWidth, getPositionY() + spriteHeight);
+    }
+
+    public boolean isPlayer1InLane() {
+        if (this.getPositionX() < getScreenWidth()/2 && this.getPositionX() > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isPlayer2InLane() {
+        if (this.getPositionX() > getScreenWidth()/2 && this.getPositionX() < getScreenWidth()){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
