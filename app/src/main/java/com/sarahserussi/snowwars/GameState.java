@@ -8,10 +8,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.ImageView;
+import android.app.Activity;
 
 import java.util.ArrayList;
 
@@ -29,11 +32,23 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap verticalLine;
     private Score score;
     private ArrayList<Score> observerList;
+    private ImageView myImageView;
 
     /* Where the touch methods go */
      /* init */
     public GameState(Context context) {
         super(context);
+
+        // TODO: Set background
+        // Bind xml file
+        //Activity a = (Activity) context;
+        //a.setContentView(R.layout.activity_game);
+
+        // Using ImageView
+        // myImageView = (ImageView)findViewById(R.id.background);
+        //myImageView.setImageResource(R.drawable.winterbackground2);
+        // myImageView.setImageDrawable(getResources().getDrawable(R.drawable.winterbackground2));
+
 
         //create player and load bitmap
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerright),
@@ -49,9 +64,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         //create ball and load bitmap
         ball = new Ball(BitmapFactory.decodeResource(getResources(), R.drawable.aquaball),
                 getScreenWidth(context) / 5, getScreenHeight(context) / 5); //set ball position
-        ball.setSpriteHeight(getScreenHeight(context)/7);
-        ball.setSpriteWidth(getScreenHeight(context)/7);
-        ball.setSpeed(new Speed(16,0));
+        ball.setSpriteHeight(getScreenHeight(context) / 7);
+        ball.setSpriteWidth(getScreenHeight(context) / 7);
+        ball.setSpeed(new Speed(16, 0));
         update();
 
         //create line
@@ -165,6 +180,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public void checkIntersect(){
 
         if (ball.getSpriteRect().intersect(player1.getSpriteRect())){
+            // TODO: Check if ball hits left or right side of player
             ball.getSpeed().toggleXDirection();
             //ball.getSpeed().toggleYDirection();
             ball.getSpeed().setyVelocity(-15);
