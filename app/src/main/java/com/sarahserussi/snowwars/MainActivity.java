@@ -11,7 +11,6 @@ import android.view.WindowManager;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private GameState gameState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +23,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        gameState = new GameState(this);
-
         setContentView(R.layout.activity_main);
-        //setContentView(gameState);
 
         View startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(this);
+        View rulesButton = findViewById(R.id.rulesButton);
+        rulesButton.setOnClickListener(this);
+        View exitButton = findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(this);
     }
 
     @Override
@@ -53,8 +53,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(intentStart);
                 break;
             case R.id.rulesButton:
+                Intent intentRule = new Intent(this, RulesActivity.class);
+                startActivity(intentRule);
                 break;
-            case R.id.settingsButton:
+            case R.id.exitButton:
+                finish();
                 break;
         }
     }

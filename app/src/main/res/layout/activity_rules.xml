@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/winterbackground2"
+    android:weightSum="1">
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/backButton" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="349dp"
+        android:id="@+id/scrollView"
+        android:fillViewport="false"
+        android:paddingTop="70dp"
+        android:background="@drawable/scroll"
+        android:layout_weight="0.59">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="This is like volleyball, but with birds, \nin the winter, with a bomb.\n\nGet a friend and start the game.\n\nPick your birds and move them around.\n\nHit the bomb, while in the air.\n\nYou win a point when it explodes on the ground."
+            android:id="@+id/textView"
+            android:autoText="false"
+            android:textAlignment="center"
+            android:textColor="#ff000000"
+            android:gravity="center_horizontal"
+            android:paddingLeft="62dp" />
+    </ScrollView>
+
+</LinearLayout>
