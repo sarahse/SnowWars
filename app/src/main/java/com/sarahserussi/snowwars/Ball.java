@@ -42,21 +42,23 @@ public class Ball {
         ballPositionY += speed.getyVelocity();
         //this.setBallPositionX(ballPositionX);
         //this.setBallPositionY(ballPositionY);
-        speed.setyVelocity(getSpeed().getyVelocity() + (float)0.6);
+        if(getSpeed().getxVelocity() != 0){
+            speed.setyVelocity(getSpeed().getyVelocity() + (float)0.6);
+        }
 
     }
 
-    public void setServePositionToPlayer1() {
+    public void setServePositionToPlayer1(int screenWidth, int screenHeight) {
         /* need to get screenWidth & screenHeight */
-        this.setBallPositionX(200);
-        this.setBallPositionY(200);
+        this.setBallPositionX(screenWidth/4);
+        this.setBallPositionY(screenHeight * 5/8);
 
     }
 
-    public void setServePositionToPlayer2() {
+    public void setServePositionToPlayer2(int screenWidth, int screenHeight) {
         /* need to get screenWidth & screenHeight */
-        this.setBallPositionX(400);
-        this.setBallPositionY(400);
+        this.setBallPositionX(3 * screenWidth/4);
+        this.setBallPositionY(screenHeight * 5/8);
     }
 
     /* checks if the ball touches the player, needs editing (bitmapRect) */

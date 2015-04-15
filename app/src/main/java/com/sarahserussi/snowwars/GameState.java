@@ -66,7 +66,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 getScreenWidth(context) / 5, getScreenHeight(context) / 5); //set ball position
         ball.setSpriteHeight(getScreenHeight(context) / 7);
         ball.setSpriteWidth(getScreenHeight(context) / 7);
-        ball.setSpeed(new Speed(16, 0));
+        ball.setSpeed(new Speed(0, 0));
+        ball.setServePositionToPlayer1(getScreenWidth(context),getScreenHeight(context));
         update();
 
         //create line
@@ -186,12 +187,14 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             ball.getSpeed().toggleXDirection();
             //ball.getSpeed().toggleYDirection();
             ball.getSpeed().setyVelocity(-15);
+            ball.getSpeed().setxVelocity(16);
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())){
 
             ball.getSpeed().toggleXDirection();
             //ball.getSpeed().toggleYDirection();
             ball.getSpeed().setyVelocity(-15);
+            ball.getSpeed().setxVelocity(16);
         }
 
         try {
