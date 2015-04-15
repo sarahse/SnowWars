@@ -44,6 +44,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onStop();
     }
 
+    /* start game */
     @Override
     public void onClick(View v) {
         switch(v.getId()){
