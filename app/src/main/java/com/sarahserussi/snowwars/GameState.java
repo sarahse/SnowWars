@@ -123,6 +123,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         ball.draw(canvas);
         line.draw(canvas);
         drawText(canvas);
+
+
     }
 
     /* check if the ball collides with the left wall */
@@ -201,14 +203,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             e.printStackTrace();
             System.out.println ("Error: nullpointer");
         }
-/*
-        // First to reach 5 points wins the game
-        if(score.getPlayer1Score() == 5){
-            //Stop the game
-        }
-        else if(score.getPlayer2Score() == 5){
-           // Stop the game
-        }*/
+
+
     }
 
     /* handles the player's movement
@@ -361,6 +357,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
+
     private void drawText(Canvas can){
         Paint paintPlayerTxt = new Paint();
         paintPlayerTxt.setColor(Color.BLACK);
@@ -373,11 +370,13 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         scoreTxt.setTextSize(getScreenWidth()/50);
         can.drawText(""+score.getPlayer1Score(), getScreenWidth()/3, getScreenHeight()/6,scoreTxt);
         can.drawText(""+score.getPlayer2Score(), getScreenWidth()/2+getScreenWidth()/10, getScreenHeight()/6,scoreTxt);
+    }
 
-       /* Paint winnerTxt = new Paint();
-        winnerTxt.setColor(Color.LTGRAY);
-        winnerTxt.setTextSize(getScreenWidth()/30);
-        can.drawText("Winner is ", getScreenWidth()/3, getScreenHeight()/3, winnerTxt);*/
+    private void endText(Canvas can){
+        Paint txt = new Paint();
+        txt.setColor(Color.LTGRAY);
+        txt.setTextSize(getScreenWidth()/20);
+        can.drawText("The winner is ", getScreenWidth()/3, getScreenHeight()/3, txt);
     }
 
     @Override
