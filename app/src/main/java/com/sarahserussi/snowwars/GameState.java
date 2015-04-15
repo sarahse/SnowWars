@@ -21,7 +21,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     private Player player1, player2;
     private Ball ball;
-    private GameLogic gameLogic;
+    private Line line;
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
     private Speed speed;
@@ -53,6 +53,13 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         ball.setSpeed(new Speed(16,0));
         update();
 
+        //create line
+        line = new Line(BitmapFactory.decodeResource(getResources(), R.drawable.verticalbar),
+                getScreenWidth()/2, getScreenHeight()/2);
+        line.setSpriteWidth(30);
+        line.setSpriteHeight((getScreenWidth()/2)-(line.getSpriteWidth()/2));
+
+
         //make the game focusable so it can handle events
         setFocusable(true);
 
@@ -69,32 +76,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         observerList = new ArrayList<Score>();
         observerList.add(score);
 
-
     }
 
-    public int getScreenWidth() {
-        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-        int width = metrics.widthPixels;
-        return width;
-    }
 
-    public int getScreenHeight() {
-        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-        int height = metrics.heightPixels;
-        return height;
-    }
-
-    public int getScreenWidth(Context context) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        int width = metrics.widthPixels;
-        return width;
-    }
-
-    public int getScreenHeight(Context context) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        int height = metrics.heightPixels;
-        return height;
-    }
 
     //update method: updates the gamestate
     public void update() {
@@ -110,20 +94,18 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         checkTopWallCollision();
 
         checkIntersect();
+
     }
 
     public void render(Canvas canvas) {
 
-        verticalLine = BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2);
-
         //canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
         canvas.drawColor(Color.YELLOW);
 
-
-        canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.verticalline2), (getScreenWidth()/2-verticalLine.getWidth()/2), (getScreenHeight()-verticalLine.getHeight()), null);
         player1.draw(canvas);
         player2.draw(canvas);
         ball.draw(canvas);
+        line.draw(canvas);
     }
 
     /* check if the ball collides with the left wall */
@@ -175,14 +157,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 /* Update score player 1 */
             /*    score.addPoint(player1);*/
 
-
-
                 notifyObserver(1);
 
             }
-
-
-
             ball.getSpeed().toggleYDirection();
         }
     }
@@ -198,6 +175,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     /* check if the ball intersects with player or web */
     public void checkIntersect(){
+
         if (ball.getSpriteRect().intersect(player1.getSpriteRect())){
             ball.getSpeed().toggleXDirection();
             //ball.getSpeed().toggleYDirection();
@@ -209,23 +187,16 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             //ball.getSpeed().toggleYDirection();
             ball.getSpeed().setyVelocity(-15);
         }
-        /*if (ball.getSpriteRect().intersect(getSpriteLineRect())){
-            ball.getSpeed().toggleXDirection();
-            ball.getSpeed().toggleYDirection();
-        }*/
 
-    }
-
-    public Rect getSpriteLineRect(){
-        return new Rect(getLinePositionX(), getLinePositionY(), (int)getLinePositionX() + verticalLine.getWidth(), (int)getLinePositionY() + verticalLine.getHeight());
-    }
-
-    public int getLinePositionX(){
-        return (getScreenWidth()/2);
-    }
-
-    public int getLinePositionY(){
-        return (getScreenHeight()- (getScreenHeight()-verticalLine.getHeight()));
+        try {
+            if (ball.getSpriteRect().intersect(line.getSpriteRect())){
+                ball.getSpeed().toggleXDirection();
+                ball.getSpeed().toggleYDirection();
+            }
+        } catch (NullPointerException e){
+            e.printStackTrace();
+            System.out.println ("Error: nullpointer");
+        }
     }
 
     /* handles the player's movement
@@ -238,13 +209,14 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         int action = event.getAction() & MotionEvent.ACTION_MASK;
         int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
         int pointerId = event.getPointerId(pointerIndex);
-        int pointerPosX = (int)event.getX(pointerIndex);
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
+
                 player1.checkPlayerTouched((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
                 player2.checkPlayerTouched((int)event.getX(pointerIndex), (int)event.getY(pointerIndex));
+
                 if (pointerId == 0){
 
                     checkPlayer1TouchedAndSetPosition(player1, event, pointerIndex);
@@ -306,7 +278,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
                         checkPlayer1TouchedAndSetPosition(player1, event, pointerIndex);
                         checkPlayer2TouchedAndSetPosition(player2, event, pointerIndex);
-
                     }
                 }
                 break;
@@ -317,8 +288,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private void checkPlayer2TouchedAndSetPosition(Player player2, MotionEvent event, int pointerIndex) {
         if (player2.isTouched()){
             player2.setPositionX((int)event.getX(pointerIndex)-100);
-            if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
-                player2.setPositionX((getScreenWidth() / 2 +  (verticalLine.getWidth() / 2) + 10));
+            if (player2.getSpriteRect().intersect(line.getSpriteRect())) {
+                player2.setPositionX((getScreenWidth() / 2 +  (line.getSpriteWidth() / 2) + 10));
             }
             if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
                 player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
@@ -327,54 +298,40 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void checkPlayer1TouchedAndSetPosition(Player player1, MotionEvent event, int pointerIndex) {
+
+
+
         if (player1.isTouched()){
             player1.setPositionX((int)event.getX(pointerIndex)-100);
-            if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
-                player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2) - 10));
+            if (player1.getSpriteRect().intersect(line.getSpriteRect())) {
+                player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (line.getSpriteWidth() / 2) - 10));
             }
         }
-
     }
 
-    /************************************************/
-        /*if (event.getAction() == MotionEvent.ACTION_UP) {
+    public int getScreenWidth() {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        return width;
+    }
 
-            if (player1.isTouched()) {
-                player1.setTouched(false);
-            }
+    public int getScreenHeight() {
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        int height = metrics.heightPixels;
+        return height;
+    }
 
-            if (player2.isTouched()) {
-                player2.setTouched(false);
-            }
-        }
+    public int getScreenWidth(Context context) {
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        return width;
+    }
 
-        if (event.getAction() == MotionEvent.ACTION_MOVE) {
-
-            player1.checkPlayerTouched((int) event.getX(), (int) event.getY());
-            if (player1.isTouched()) {
-                player1.setPositionX((int) event.getX());
-                /* checks if the player touches the net */
-                /*if (player1.getSpriteRect().intersect(getSpriteLineRect())) {
-                    player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (verticalLine.getWidth() / 2)));
-                }
-            }
-
-            player2.checkPlayerTouched((int) event.getX(), (int) event.getY());
-            if (player2.isTouched()) {
-                player2.setPositionX((int) event.getX());
-                /* checks if the player touches the net */
-               /* if (player2.getSpriteRect().intersect(getSpriteLineRect())) {
-                    player2.setPositionX((getScreenWidth() / 2) + (verticalLine.getWidth() / 2));
-                }
-                /* checks if the player goes out of the screen */
-             /*   if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
-                    player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
-                }
-            }
-        }
-
-        return true;
-    }*/
+    public int getScreenHeight(Context context) {
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        int height = metrics.heightPixels;
+        return height;
+    }
 
     // Notify observer about the score
     public void notifyObserver(int player){
@@ -411,6 +368,4 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
         }
     }
-
-
 }

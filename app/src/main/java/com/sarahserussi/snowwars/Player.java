@@ -51,22 +51,6 @@ public class Player {
 
     }
 
-    /* move left and right */
-    public void handleActionPointerDown(int eventX, int eventY) {
-        if (eventX >= (positionX - bitmap.getWidth() / 2)
-                && (eventX <= (positionX + bitmap.getHeight() / 2))) {
-            if (eventY >= (positionY - bitmap.getHeight() / 2)
-                    && (positionY <= (positionY + bitmap.getHeight() / 2))) {
-                setTouched(true);
-            } else {
-                setTouched(false);
-            }
-        } else {
-            setTouched(false);
-        }
-
-    }
-
     /* jump */
     public void jump() {
 
@@ -145,6 +129,6 @@ public class Player {
     }
 
     public Rect getSpriteRect(){
-        return new Rect(getPositionX(), getPositionY(), (int)getPositionX() + spriteWidth, (int)getPositionY() + spriteHeight);
+        return new Rect(getPositionX(), getPositionY(), getPositionX() + spriteWidth, getPositionY() + spriteHeight);
     }
 }
