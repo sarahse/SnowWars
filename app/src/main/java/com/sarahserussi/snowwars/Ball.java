@@ -43,6 +43,7 @@ public class Ball {
         //this.setBallPositionX(ballPositionX);
         //this.setBallPositionY(ballPositionY);
         speed.setyVelocity(getSpeed().getyVelocity() + (float)0.6);
+
     }
 
     public void setServePositionToPlayer1() {
