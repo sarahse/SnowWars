@@ -55,7 +55,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         //create line
         line = new Line(BitmapFactory.decodeResource(getResources(), R.drawable.verticalbar),
-                getScreenWidth()/2, getScreenHeight()/2);
+                getScreenWidth(context)/2, getScreenHeight(context)/2);
         line.setSpriteWidth(30);
         line.setSpriteHeight((getScreenWidth()/2)-(line.getSpriteWidth()/2));
 
