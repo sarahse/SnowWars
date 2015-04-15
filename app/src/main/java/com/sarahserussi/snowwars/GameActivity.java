@@ -7,6 +7,7 @@ import android.view.WindowManager;
 
 /**
  * Created by Anders H. Gundersen on 14.04.2015.
+ * GameActivity class
  */
 public class GameActivity extends Activity {
 
