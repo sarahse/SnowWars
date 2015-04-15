@@ -144,7 +144,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     /* check if the ball collides with the bottom wall */
     public void checkBottomWallCollision() {
-        if(ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN && ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()){
+        if(ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()){
 
             // ball hits left side of net - give point to player 2
             if(ball.getBallPositionX()+ball.getBitmap().getWidth() < (getScreenWidth()/2)){
@@ -201,6 +201,14 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             e.printStackTrace();
             System.out.println ("Error: nullpointer");
         }
+/*
+        // First to reach 5 points wins the game
+        if(score.getPlayer1Score() == 5){
+            //Stop the game
+        }
+        else if(score.getPlayer2Score() == 5){
+           // Stop the game
+        }*/
     }
 
     /* handles the player's movement
@@ -350,7 +358,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public void notifyObserver(int player){
         if(player == 1){
             score.addScoreToPlayer1();
-
         }
         if(player == 2){
             score.addScoreToPlayer2();
@@ -361,15 +368,20 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private void drawText(Canvas can){
         Paint paintPlayerTxt = new Paint();
         paintPlayerTxt.setColor(Color.BLACK);
-        paintPlayerTxt.setTextSize(20);
+        paintPlayerTxt.setTextSize(getScreenWidth()/40);
         can.drawText("Player1", getScreenWidth()/3, getScreenHeight()/8,paintPlayerTxt);
         can.drawText("Player2", getScreenWidth()/2+getScreenWidth()/10, getScreenHeight()/8, paintPlayerTxt);
 
         Paint scoreTxt = new Paint();
         scoreTxt.setColor(Color.BLACK);
-        scoreTxt.setTextSize(15);
+        scoreTxt.setTextSize(getScreenWidth()/50);
         can.drawText(""+score.getPlayer1Score(), getScreenWidth()/3, getScreenHeight()/6,scoreTxt);
         can.drawText(""+score.getPlayer2Score(), getScreenWidth()/2+getScreenWidth()/10, getScreenHeight()/6,scoreTxt);
+
+       /* Paint winnerTxt = new Paint();
+        winnerTxt.setColor(Color.LTGRAY);
+        winnerTxt.setTextSize(getScreenWidth()/30);
+        can.drawText("Winner is ", getScreenWidth()/3, getScreenHeight()/3, winnerTxt);*/
     }
 
     @Override
