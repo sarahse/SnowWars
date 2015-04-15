@@ -65,4 +65,19 @@
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="LOADING..."
+        android:id="@+id/textLoading"
+        android:layout_above="@+id/startButton"
+        android:layout_alignLeft="@+id/startButton"
+        android:layout_alignStart="@+id/startButton"
+        android:textColor="#ff000000"
+        android:layout_toLeftOf="@+id/exitButton"
+        android:layout_toStartOf="@+id/exitButton"
+        android:textSize="30dp"
+        android:visibility="invisible" />
+
 </RelativeLayout>

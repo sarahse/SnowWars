@@ -49,6 +49,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.startButton:
+                View textLoading = findViewById(R.id.textLoading);
+                textLoading.setVisibility(View.VISIBLE);
                 Intent intentStart = new Intent(this, GameActivity.class);
                 startActivity(intentStart);
                 break;
