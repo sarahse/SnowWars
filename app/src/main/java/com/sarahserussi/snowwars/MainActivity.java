@@ -29,6 +29,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         startButton.setOnClickListener(this);
         View rulesButton = findViewById(R.id.rulesButton);
         rulesButton.setOnClickListener(this);
+        View exitButton = findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(this);
     }
 
     @Override
@@ -53,6 +55,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.rulesButton:
                 Intent intentRule = new Intent(this, RulesActivity.class);
                 startActivity(intentRule);
+                break;
+            case R.id.exitButton:
+                finish();
                 break;
         }
     }
