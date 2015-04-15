@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -106,6 +107,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         player2.draw(canvas);
         ball.draw(canvas);
         line.draw(canvas);
+        drawText(canvas);
     }
 
     /* check if the ball collides with the left wall */
@@ -127,41 +129,27 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     /* check if the ball collides with the bottom wall */
     public void checkBottomWallCollision() {
-        if(ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()){
-            ball.setBallPositionY(20);
-        }
-        if (ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN
-                && ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()) {
-            //moveBallToServePosition(player1,player2);
+        if(ball.getSpeed().getyDirection() == Speed.DIRECTION_DOWN && ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()){
 
-            /* Ball hits left side - give point to player 2 */
-            if (ball.getBallPositionX() + ball.getBitmap().getWidth() < (getScreenWidth()/2)) {
-                /* Set servePosition to player 1 */
-                //ball.setServePositionToPlayer1();
-               /* ball.setBallPositionX(200);
-                ball.setBallPositionY(200);
-                /* Set ballVelocity */
-               /* ball.setSpeed(new Speed(0, -10));
-                /* Update score player 2 */
-               // score.addPoint(player2);
-
+            // ball hits left side of net - give point to player 2
+            if(ball.getBallPositionX()+ball.getBitmap().getWidth() < (getScreenWidth()/2)){
                 notifyObserver(2);
+                ball.setBallPositionY(getScreenHeight()/3);
+                ball.setBallPositionX(getScreenWidth()/4);
             }
-
-            /* Ball hits right side - give point to player 1 */
-            if (ball.getBallPositionX() + ball.getBitmap().getWidth() > (getScreenWidth()/2)) {
-                /* Set servePosition to player 2 */
-            /*    ball.setServePositionToPlayer2();
-                /* Set ballVelocity */
-            /*    ball.setSpeed(new Speed(0, -10));
-                /* Update score player 1 */
-            /*    score.addPoint(player1);*/
-
+            // ball hits right side of net - give point to player 1
+            else if(ball.getBallPositionX()+ball.getBitmap().getWidth()>(getScreenWidth()/2)){
                 notifyObserver(1);
-
+                ball.setBallPositionX(getScreenWidth()*3/4);
+                ball.setBallPositionY(getScreenHeight()/3);
             }
-            ball.getSpeed().toggleYDirection();
+
+
+            //ball.setBallPositionY(20);
         }
+
+            //ball.getSpeed().toggleYDirection();
+
     }
 
     /* check if the ball collides with the top wall */
@@ -337,12 +325,26 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public void notifyObserver(int player){
         if(player == 1){
             score.addScoreToPlayer1();
-            System.out.println("poeng til spiller 1");
+
         }
         if(player == 2){
             score.addScoreToPlayer2();
-            System.out.println("poeng til spiller 2");
+
         }
+    }
+
+    private void drawText(Canvas can){
+        Paint paintPlayerTxt = new Paint();
+        paintPlayerTxt.setColor(Color.BLACK);
+        paintPlayerTxt.setTextSize(20);
+        can.drawText("Player1", getScreenWidth()/3, getScreenHeight()/8,paintPlayerTxt);
+        can.drawText("Player2", getScreenWidth()/2+getScreenWidth()/10, getScreenHeight()/8, paintPlayerTxt);
+
+        Paint scoreTxt = new Paint();
+        scoreTxt.setColor(Color.BLACK);
+        scoreTxt.setTextSize(15);
+        can.drawText(""+score.getPlayer1Score(), getScreenWidth()/3, getScreenHeight()/6,scoreTxt);
+        can.drawText(""+score.getPlayer2Score(), getScreenWidth()/2+getScreenWidth()/10, getScreenHeight()/6,scoreTxt);
     }
 
     @Override
