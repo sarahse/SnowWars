@@ -1,15 +1,17 @@
 package com.sarahserussi.snowwars;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends Activity {
 
     private GameState gameState;
 
@@ -25,12 +27,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         gameState = new GameState(this);
+        setContentView(gameState);
+/*
+        ImageView imgView = (ImageView) findViewById(R.id.);
+        imgView.setImageBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.winterbackground2));
 
-        setContentView(R.layout.activity_main);
-        //setContentView(gameState);
+        /* set background image */
+       /* View view = getWindow().getDecorView();
+        int orientation = getResources().getConfiguration().orientation;
+        if(Configuration.ORIENTATION_LANDSCAPE == orientation){
+            view.setBackgroundResource(R.drawable.winterbackground2);
+        }
+        else{
+            view.setBackgroundResource(R.drawable.winterbackground2);
+        }*/
 
-        View startButton = findViewById(R.id.startButton);
-        startButton.setOnClickListener(this);
     }
 
     @Override
@@ -42,19 +53,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onStop(){
         super.onStop();
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.startButton:
-                Intent intentStart = new Intent(this, GameActivity.class);
-                startActivity(intentStart);
-                break;
-            case R.id.rulesButton:
-                break;
-            case R.id.settingsButton:
-                break;
-        }
     }
 }

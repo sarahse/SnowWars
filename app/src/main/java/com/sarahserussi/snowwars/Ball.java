@@ -49,6 +49,7 @@ public class Ball {
         /* need to get screenWidth & screenHeight */
         this.setBallPositionX(200);
         this.setBallPositionY(200);
+
     }
 
     public void setServePositionToPlayer2() {
