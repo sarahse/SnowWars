@@ -120,6 +120,6 @@ public class Ball {
     public Rect getSourceRect() { return sourceRect; }
 
     public Rect getSpriteRect(){
-        return new Rect(getBallPositionX(), getBallPositionY(), (int)getBallPositionX() + spriteWidth, (int)getBallPositionY() + spriteHeight);
+        return new Rect(getBallPositionX(), getBallPositionY(), getBallPositionX() + spriteWidth, getBallPositionY() + spriteHeight);
     }
 }
