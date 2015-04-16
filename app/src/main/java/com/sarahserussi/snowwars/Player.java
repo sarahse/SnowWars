@@ -146,6 +146,14 @@ public class Player {
         return new Rect(getPositionX(), getPositionY(), getPositionX() + spriteWidth, getPositionY() + spriteHeight);
     }
 
+    public Rect getRightSideRect(){
+        return new Rect(((getPositionX() + spriteWidth)/2), getPositionY(), (getPositionX() + spriteWidth), getPositionY() + spriteHeight);
+    }
+
+    public Rect getLeftSideRect() {
+        return new Rect(getPositionX(), getPositionY(), ((getPositionX()+ spriteWidth)/2), getPositionY() + spriteHeight);
+    }
+
     public boolean isPlayer1InLane() {
         if (this.getPositionX() < getScreenWidth()/2 && this.getPositionX() > 0){
             return true;
@@ -161,4 +169,6 @@ public class Player {
             return false;
         }
     }
+
+
 }

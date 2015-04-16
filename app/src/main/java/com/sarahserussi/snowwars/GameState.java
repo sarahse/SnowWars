@@ -53,7 +53,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         // myImageView.setImageDrawable(getResources().getDrawable(R.drawable.winterbackground2));
 
 
-        //create player and load bitmap to game
+        //create player and load bitmap
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.figure1),
                 (getScreenWidth(context) / 40), getScreenHeight(context) * 6 / 8); //set player position
         player1.setSpriteWidth(getScreenWidth(context)/8);
@@ -74,7 +74,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         update();
 
         //create line
-        line = new Line(BitmapFactory.decodeResource(getResources(), R.drawable.woodline),
+        line = new Line(BitmapFactory.decodeResource(getResources(), R.drawable.verticalbar),
                 getScreenWidth(context)/2, getScreenHeight(context)/2);
         line.setSpriteWidth(30);
         line.setSpriteHeight((getScreenWidth()/2)-(line.getSpriteWidth()/2));
@@ -203,14 +203,37 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         if (ball.getSpriteRect().intersect(player1.getSpriteRect())){
             // TODO: Check if ball hits left or right side of player
-            ball.getSpeed().toggleXDirection();
+
+            Rect player1RightSide = player1.getRightSideRect();
+            Rect player1LeftSide = player1.getLeftSideRect();
+
+            if (ball.getSpriteRect().intersect(player1LeftSide)){
+                ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
+            }
+
+            if (ball.getSpriteRect().intersect(player1RightSide)){
+                ball.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
+            }
+
+            //ball.getSpeed().toggleXDirection();
             //ball.getSpeed().toggleYDirection();
             ball.getSpeed().setyVelocity(-15);
             ball.getSpeed().setxVelocity(16);
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())){
 
-            ball.getSpeed().toggleXDirection();
+            Rect player2RightSide = player2.getRightSideRect();
+            Rect player2LeftSide = player2.getLeftSideRect();
+
+            if (ball.getSpriteRect().intersect(player2LeftSide)){
+                ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
+            }
+
+            if (ball.getSpriteRect().intersect(player2RightSide)){
+                ball.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
+            }
+
+            //ball.getSpeed().toggleXDirection();
             //ball.getSpeed().toggleYDirection();
             ball.getSpeed().setyVelocity(-15);
             ball.getSpeed().setxVelocity(16);
