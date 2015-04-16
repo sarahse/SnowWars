@@ -53,7 +53,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         // myImageView.setImageDrawable(getResources().getDrawable(R.drawable.winterbackground2));
 
 
-        //create player and load bitmap
+        //create player and load bitmap to game
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.figure1),
                 (getScreenWidth(context) / 40), getScreenHeight(context) * 6 / 8); //set player position
         player1.setSpriteWidth(getScreenWidth(context)/8);
