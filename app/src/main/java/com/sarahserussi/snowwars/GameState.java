@@ -42,6 +42,17 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public GameState(Context context) {
         super(context);
 
+        // TODO: Set background
+        // Bind xml file
+        //Activity a = (Activity) context;
+        //a.setContentView(R.layout.activity_game);
+
+        // Using ImageView
+        // myImageView = (ImageView)findViewById(R.id.background);
+        //myImageView.setImageResource(R.drawable.winterbackground2);
+        // myImageView.setImageDrawable(getResources().getDrawable(R.drawable.winterbackground2));
+
+
         //create player and load bitmap
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.figure1),
                 (getScreenWidth(context) / 40), getScreenHeight(context) * 6 / 8); //set player position
@@ -78,7 +89,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         // create the game loop thread
         gameLoopThread = new GameLoopThread(this);
 
-
+        //set servePos
         //add background
         //set new score
         score = new Score();
@@ -109,7 +120,10 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void render(Canvas canvas) {
+       /* Resources res = getResources();
+        Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.winterbackground2);
 
+        Canvas can = new Canvas(bitmap.copy(Bitmap.Config.ARGB_8888, true));*/
         Drawable d = getResources().getDrawable(R.drawable.winterbackground2);
         d.setBounds(getLeft(), getTop(), getRight(), getBottom());
         d.draw(canvas);
@@ -123,10 +137,10 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         drawText(canvas);
 
         if(endGame && player1Wins){
-            //endText(canvas, player1);
+            endText(canvas, player1);
          }
         if(endGame && player2Wins){
-            //endText(canvas, player2);
+            endText(canvas, player2);
         }
         //canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
 
@@ -169,6 +183,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
 
 
+            //ball.setBallPositionY(20);
         }
 
             //ball.getSpeed().toggleYDirection();
@@ -187,36 +202,17 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     /* check if the ball intersects with player or web */
     public void checkIntersect(){
 
-        /* Check if ball hits left or right side of player */
         if (ball.getSpriteRect().intersect(player1.getSpriteRect())){
-
-            Rect player1RightSide = player1.getRightSideRect();
-            Rect player1LeftSide = player1.getLeftSideRect();
-
-            if (ball.getSpriteRect().intersect(player1LeftSide)){
-                ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
-            }
-
-            if (ball.getSpriteRect().intersect(player1RightSide)){
-                ball.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
-            }
-
+            // TODO: Check if ball hits left or right side of player
+            ball.getSpeed().toggleXDirection();
+            //ball.getSpeed().toggleYDirection();
             ball.getSpeed().setyVelocity(-15);
             ball.getSpeed().setxVelocity(16);
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())){
 
-            Rect player2RightSide = player2.getRightSideRect();
-            Rect player2LeftSide = player2.getLeftSideRect();
-
-            if (ball.getSpriteRect().intersect(player2LeftSide)){
-                ball.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
-            }
-
-            if (ball.getSpriteRect().intersect(player2RightSide)){
-                ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
-            }
-
+            ball.getSpeed().toggleXDirection();
+            //ball.getSpeed().toggleYDirection();
             ball.getSpeed().setyVelocity(-15);
             ball.getSpeed().setxVelocity(16);
         }
@@ -230,6 +226,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             e.printStackTrace();
             System.out.println ("Error: nullpointer");
         }
+
+
     }
 
     /* handles the player's movement
@@ -335,6 +333,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
         }
 
+
     private void checkPlayer1TouchedAndSetPosition(Player player1, MotionEvent event, int pointerIndex) {
 
             if (player1.isTouched()){
@@ -344,6 +343,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 }
             }
         }
+
 
     public int getScreenWidth() {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
@@ -408,13 +408,12 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         can.drawText(""+score.getPlayer2Score(), getScreenWidth()/2+getScreenWidth()/10, getScreenHeight()/6,scoreTxt);
     }
 
-    /*
     private void endText(Canvas can, Player player){
         Paint txt = new Paint();
         txt.setColor(Color.LTGRAY);
         txt.setTextSize(getScreenWidth()/20);
         can.drawText("The winner is " + player + " !", getScreenWidth()/3, getScreenHeight()/3, txt);
-    }*/
+    }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
