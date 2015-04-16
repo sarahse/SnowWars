@@ -78,7 +78,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         // create the game loop thread
         gameLoopThread = new GameLoopThread(this);
 
-        //set servePos
+
         //add background
         //set new score
         score = new Score();
