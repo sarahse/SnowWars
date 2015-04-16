@@ -120,18 +120,25 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void render(Canvas canvas) {
+       /* Resources res = getResources();
+        Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.winterbackground2);
 
-            canvas.drawColor(Color.YELLOW);
+        Canvas can = new Canvas(bitmap.copy(Bitmap.Config.ARGB_8888, true));*/
+        Drawable d = getResources().getDrawable(R.drawable.winterbackground2);
+        d.setBounds(getLeft(), getTop(), getRight(), getBottom());
+        d.draw(canvas);
 
-            player1.draw(canvas);
-            player2.draw(canvas);
-            ball.draw(canvas);
-            line.draw(canvas);
-            drawText(canvas);
+        //canvas.drawColor(Color.YELLOW);
 
-            if(endGame && player1Wins){
-                endText(canvas, player1);
-            }
+        player1.draw(canvas);
+        player2.draw(canvas);
+        ball.draw(canvas);
+        line.draw(canvas);
+        drawText(canvas);
+
+        if(endGame && player1Wins){
+            endText(canvas, player1);
+         }
         if(endGame && player2Wins){
             endText(canvas, player2);
         }
