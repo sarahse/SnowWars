@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -402,13 +403,19 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private void drawText(Canvas can){
         Paint paintPlayerTxt = new Paint();
         paintPlayerTxt.setColor(Color.BLACK);
-        paintPlayerTxt.setTextSize(getScreenWidth()/40);
+        paintPlayerTxt.setTextSize(getScreenWidth() / 40);
+        paintPlayerTxt.setTypeface(Typeface.DEFAULT_BOLD);
+
+        //Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "caviardreamsbold.ttf");
+        //paintPlayerTxt.setTypeface(tf);
+
         can.drawText("Player1", getScreenWidth()/3, getScreenHeight()/8,paintPlayerTxt);
         can.drawText("Player2", getScreenWidth()/2+getScreenWidth()/10, getScreenHeight()/8, paintPlayerTxt);
 
         Paint scoreTxt = new Paint();
         scoreTxt.setColor(Color.BLACK);
         scoreTxt.setTextSize(getScreenWidth()/50);
+        scoreTxt.setTypeface(Typeface.DEFAULT_BOLD);
         can.drawText(""+score.getPlayer1Score(), getScreenWidth()/3, getScreenHeight()/6,scoreTxt);
         can.drawText(""+score.getPlayer2Score(), getScreenWidth()/2+getScreenWidth()/10, getScreenHeight()/6,scoreTxt);
     }
