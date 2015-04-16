@@ -163,12 +163,14 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         if(ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()){
 
             // ball hits left side of net - give point to player 2
-            if(ball.getBallPositionX()+ball.getBitmap().getWidth() < (getScreenWidth()/2)){
+           // if(ball.getBallPositionX()+ball.getBitmap().getWidth() < (getScreenWidth()/2)){
+            if (ball.getBallPositionX() < line.getLinePositionX()){
                 notifyObserver(2);
                 ball.setServePositionToPlayer2(screenWidth, screenHeight);
             }
             // ball hits right side of net - give point to player 1
-            else if(ball.getBallPositionX()+ball.getBitmap().getWidth()>(getScreenWidth()/2)){
+            //else if(ball.getBallPositionX()+ball.getBitmap().getWidth()>(getScreenWidth()/2)){
+            else if (ball.getBallPositionX() > line.getLinePositionX()){
                 notifyObserver(1);
                 ball.setServePositionToPlayer1(screenWidth, screenHeight);
             }
