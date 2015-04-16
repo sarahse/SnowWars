@@ -215,11 +215,11 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             Rect player2LeftSide = player2.getLeftSideRect();
 
             if (ball.getSpriteRect().intersect(player2LeftSide)){
-                ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
+                ball.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
             }
 
             if (ball.getSpriteRect().intersect(player2RightSide)){
-                ball.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
+                ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
             }
 
             //ball.getSpeed().toggleXDirection();

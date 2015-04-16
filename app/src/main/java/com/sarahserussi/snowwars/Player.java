@@ -13,9 +13,6 @@ import android.util.DisplayMetrics;
 public class Player {
 
     private int positionX, positionY;
-    private int playerSpeedX;
-    private int playerSpeedY;
-    private Speed speed;
     private Bitmap bitmap;
     private int spriteWidth, spriteHeight;
     private Rect sourceRect;
@@ -74,30 +71,6 @@ public class Player {
         this.positionY = positionY;
     }
 
-    public int getPlayerSpeedX() {
-        return playerSpeedX;
-    }
-
-    public void setPlayerSpeedX(int playerSpeedX) {
-        this.playerSpeedX = playerSpeedX;
-    }
-
-    public int getPlayerSpeedY() {
-        return playerSpeedY;
-    }
-
-    public void setPlayerSpeedY(int playerSpeedY) {
-        this.playerSpeedY = playerSpeedY;
-    }
-
-    public Speed getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(Speed speed) {
-        this.speed = speed;
-    }
-
     public int getSpriteWidth() {
         return spriteWidth;
     }
@@ -143,15 +116,15 @@ public class Player {
     }
 
     public Rect getSpriteRect(){
-        return new Rect(getPositionX(), getPositionY(), getPositionX() + spriteWidth, getPositionY() + spriteHeight);
+        return new Rect(getPositionX(), getPositionY(), getPositionX() + getSpriteWidth(), getPositionY() + getSpriteHeight());
     }
 
     public Rect getRightSideRect(){
-        return new Rect(((getPositionX() + spriteWidth)/2), getPositionY(), (getPositionX() + spriteWidth), getPositionY() + spriteHeight);
+        return new Rect(((getPositionX() + getSpriteWidth())/2), getPositionY(), (getPositionX() + getSpriteWidth()), getPositionY() + getSpriteHeight());
     }
 
     public Rect getLeftSideRect() {
-        return new Rect(getPositionX(), getPositionY(), ((getPositionX()+ spriteWidth)/2), getPositionY() + spriteHeight);
+        return new Rect(getPositionX(), getPositionY(), ((getPositionX()+ getSpriteWidth())/2), getPositionY() + getSpriteHeight());
     }
 
     public boolean isPlayer1InLane() {
