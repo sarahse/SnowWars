@@ -42,17 +42,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public GameState(Context context) {
         super(context);
 
-        // TODO: Set background
-        // Bind xml file
-        //Activity a = (Activity) context;
-        //a.setContentView(R.layout.activity_game);
-
-        // Using ImageView
-        // myImageView = (ImageView)findViewById(R.id.background);
-        //myImageView.setImageResource(R.drawable.winterbackground2);
-        // myImageView.setImageDrawable(getResources().getDrawable(R.drawable.winterbackground2));
-
-
         //create player and load bitmap
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.figure1),
                 (getScreenWidth(context) / 40), getScreenHeight(context) * 6 / 8); //set player position
