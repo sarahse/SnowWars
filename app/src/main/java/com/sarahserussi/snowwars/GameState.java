@@ -137,10 +137,10 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         drawText(canvas);
 
         if(endGame && player1Wins){
-            endText(canvas, player1);
+            endText(canvas, "Player 1");
          }
         if(endGame && player2Wins){
-            endText(canvas, player2);
+            endText(canvas, "Player 2");
         }
         //canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
 
@@ -408,11 +408,11 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         can.drawText(""+score.getPlayer2Score(), getScreenWidth()/2+getScreenWidth()/10, getScreenHeight()/6,scoreTxt);
     }
 
-    private void endText(Canvas can, Player player){
+    private void endText(Canvas can, String player){
         Paint txt = new Paint();
         txt.setColor(Color.LTGRAY);
         txt.setTextSize(getScreenWidth()/20);
-        can.drawText("The winner is " + player + " !", getScreenWidth()/3, getScreenHeight()/3, txt);
+        can.drawText("The winner is " + player + " !", getScreenWidth()/5, getScreenHeight()/3, txt);
     }
 
     @Override
