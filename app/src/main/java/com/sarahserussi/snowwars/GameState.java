@@ -74,7 +74,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         update();
 
         //create line
-        line = new Line(BitmapFactory.decodeResource(getResources(), R.drawable.verticalbar),
+        line = new Line(BitmapFactory.decodeResource(getResources(), R.drawable.woodline),
                 getScreenWidth(context)/2, getScreenHeight(context)/2);
         line.setSpriteWidth(30);
         line.setSpriteHeight((getScreenWidth()/2)-(line.getSpriteWidth()/2));
@@ -183,7 +183,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
 
 
-            //ball.setBallPositionY(20);
         }
 
             //ball.getSpeed().toggleYDirection();
