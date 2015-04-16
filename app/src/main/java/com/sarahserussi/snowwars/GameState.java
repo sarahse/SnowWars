@@ -139,9 +139,13 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         if(endGame && player1Wins){
             endText(canvas, "Player 1");
+            gameLoopThread.setRunning(false);
+            ((Activity)getContext()).finish();
          }
         if(endGame && player2Wins){
             endText(canvas, "Player 2");
+            gameLoopThread.setRunning(false);
+            ((Activity)getContext()).finish();
         }
         //canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
 
