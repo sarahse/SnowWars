@@ -54,21 +54,21 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
 
         //create player and load bitmap
-        player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerright),
-                (getScreenWidth(context) / 40), getScreenHeight(context) * 5 / 8); //set player position
-        player1.setSpriteWidth(getScreenWidth(context)/5);
-        player1.setSpriteHeight(getScreenHeight(context)/3);
+        player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.figure1),
+                (getScreenWidth(context) / 40), getScreenHeight(context) * 6 / 8); //set player position
+        player1.setSpriteWidth(getScreenWidth(context)/8);
+        player1.setSpriteHeight(getScreenHeight(context)/5);
 
-        player2 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerleft),
-                ((getScreenWidth(context) * 31) / 40), getScreenHeight(context) * 5 / 8); //set player position
-        player2.setSpriteWidth(getScreenWidth(context)/5);
-        player2.setSpriteHeight(getScreenHeight(context)/3);
+        player2 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.figure2),
+                ((getScreenWidth(context) * 31) / 40), getScreenHeight(context) * 6 / 8); //set player position
+        player2.setSpriteWidth(getScreenWidth(context)/8);
+        player2.setSpriteHeight(getScreenHeight(context)/5);
 
         //create ball and load bitmap
         ball = new Ball(BitmapFactory.decodeResource(getResources(), R.drawable.aquaball),
                 getScreenWidth(context) / 5, getScreenHeight(context) / 5); //set ball position
-        ball.setSpriteHeight(getScreenHeight(context) / 7);
-        ball.setSpriteWidth(getScreenHeight(context) / 7);
+        ball.setSpriteHeight(getScreenHeight(context) / 10);
+        ball.setSpriteWidth(getScreenHeight(context) / 10);
         ball.setSpeed(new Speed(0, 0));
         ball.setServePositionToPlayer1(getScreenWidth(context),getScreenHeight(context));
         update();

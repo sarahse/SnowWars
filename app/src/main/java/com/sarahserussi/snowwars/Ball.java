@@ -51,7 +51,7 @@ public class Ball {
     public void setServePositionToPlayer1(int screenWidth, int screenHeight) {
         /* need to get screenWidth & screenHeight */
         this.setBallPositionX(screenWidth/4);
-        this.setBallPositionY(screenHeight * 5/8);
+        this.setBallPositionY(screenHeight * 7/10);
         this.getSpeed().setxVelocity(0);
         this.getSpeed().setyVelocity(0);
         this.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
@@ -61,7 +61,7 @@ public class Ball {
     public void setServePositionToPlayer2(int screenWidth, int screenHeight) {
         /* need to get screenWidth & screenHeight */
         this.setBallPositionX(3 * screenWidth/4);
-        this.setBallPositionY(screenHeight * 5/8);
+        this.setBallPositionY(screenHeight * 7/10);
         this.getSpeed().setxVelocity(0);
         this.getSpeed().setyVelocity(0);
         this.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
