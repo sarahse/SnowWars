@@ -203,8 +203,16 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
+    private int randomWithRange(int min, int max)
+    {
+        int range = (max - min) + 1;
+        return (int)(Math.random() * range) + min;
+    }
+
     /* check if the ball intersects with player or web */
     public void checkIntersect() {
+
+
 
         if (ball.getSpriteRect().intersect(player1.getSpriteRect())) {
             // TODO: Check if ball hits left or right side of player
@@ -220,8 +228,10 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 ball.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
             }
 
-            ball.getSpeed().setyVelocity(-15);
-            ball.getSpeed().setxVelocity(16);
+            //the ball gets a random speed between 15 and 20
+            // TODO: need to make this relative speed i.e. getScreenHeight/20 or something
+            ball.getSpeed().setyVelocity(- randomWithRange(15,20));
+            ball.getSpeed().setxVelocity(randomWithRange(15,20));
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())) {
 
@@ -236,8 +246,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
             }
 
-            ball.getSpeed().setyVelocity(-15);
-            ball.getSpeed().setxVelocity(16);
+            ball.getSpeed().setyVelocity(- randomWithRange(15,20));
+            ball.getSpeed().setxVelocity(randomWithRange(15,20));
         }
 
         try {
