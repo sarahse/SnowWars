@@ -7,9 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
+
+    public static int bkgdChecked = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
+
+        setMusicOff();
 
         View startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(this);
@@ -62,5 +69,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 finish();
                 break;
         }
+    }
+
+    /* Function for turning off background music */
+    public void setMusicOff() {
+        CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox);
+        checkBox1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()) {
+                    bkgdChecked = 1;
+                } else {
+                    bkgdChecked = 0;
+                }
+            }
+        });
+        bkgdChecked = 0;
     }
 }

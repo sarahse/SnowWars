@@ -13,7 +13,8 @@ import android.view.WindowManager;
 public class GameActivity extends Activity {
 
     private GameState gameState;
-    MediaPlayer music;
+    private MediaPlayer music;
+    private int lastBkgdChecked = MainActivity.bkgdChecked;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -25,16 +26,23 @@ public class GameActivity extends Activity {
         setContentView(gameState);
         gameState.requestFocus();
 
-        music = MediaPlayer.create(GameActivity.this, R.raw.candyvalley);
-        music.setLooping(true);
-        music.start();
+        if (lastBkgdChecked == 0) {
+            music = MediaPlayer.create(GameActivity.this, R.raw.candyvalley);
+            music.setLooping(true);
+            music.start();
+        }
+
 
     }
 
     protected void onPause() {
+        if (lastBkgdChecked == 0) {
+            music.release();
+        }
+        MainActivity.bkgdChecked = 0; // Needed so to reset global variable the checkbox to notChecked
         super.onPause();
-        music.release();
         finish();
     }
+
 }
 
