@@ -27,7 +27,7 @@ public class GameActivity extends Activity {
         gameState.requestFocus();
 
         if (lastBkgdChecked == 0) {
-            music = MediaPlayer.create(GameActivity.this, R.raw.candyvalley);
+            music = MediaPlayer.create(GameActivity.this, R.raw.hot_snow);
             music.setLooping(true);
             music.start();
         }
