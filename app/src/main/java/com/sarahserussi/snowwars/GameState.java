@@ -239,6 +239,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             if (ball.getSpriteRect().intersect(line.getSpriteRect())) {
                 ball.getSpeed().toggleXDirection();
                 ball.getSpeed().toggleYDirection();
+
+                //ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+                //ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -332,14 +335,14 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         if (player2.isTouched()) {
             player2.setPositionX((int) event.getX(pointerIndex) - 100);
             if (player2.getSpriteRect().intersect(line.getSpriteRect())) {
-                player2.setPositionX((getScreenWidth() / 2 + (line.getSpriteWidth()) + 20));
+                player2.setPositionX((getScreenWidth() / 2 + (line.getSpriteWidth())));
             }
             if (player2.isPlayer2InLane()) {
                 if ((player2.getPositionX() + player2.getSpriteRect().width()) >= getScreenWidth()) {
                     player2.setPositionX(getScreenWidth() - player2.getSpriteRect().width());
                 }
             } else {
-                player2.setPositionX(getScreenWidth() / 2 + (line.getSpriteWidth()) + 20);
+                player2.setPositionX(getScreenWidth() / 2 + (line.getSpriteWidth()));
             }
         }
     }
