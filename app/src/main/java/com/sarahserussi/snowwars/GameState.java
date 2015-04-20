@@ -201,10 +201,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     /* check if the ball intersects with player or web */
     public void checkIntersect() {
 
-
-
         if (ball.getSpriteRect().intersect(player1.getSpriteRect())) {
-            // TODO: Check if ball hits left or right side of player
 
             Rect player1RightSide = player1.getRightSideRect();
             Rect player1LeftSide = player1.getLeftSideRect();
@@ -217,10 +214,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 ball.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
             }
 
-            //the ball gets a random speed between 15 and 20
-            // TODO: need to make this relative speed i.e. getScreenHeight/20 or something
-            ball.getSpeed().setyVelocity(- randomWithRange(15,20));
-            ball.getSpeed().setxVelocity(randomWithRange(15,20));
+            //the ball gets a random speed
+            ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())) {
 
@@ -235,8 +231,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
             }
 
-            ball.getSpeed().setyVelocity(- randomWithRange(15,20));
-            ball.getSpeed().setxVelocity(randomWithRange(15,20));
+            ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
         }
 
         try {
@@ -248,8 +244,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             e.printStackTrace();
             System.out.println("Error: nullpointer");
         }
-
-
     }
 
     /* handles the player's movement
@@ -264,8 +258,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         int pointerId = event.getPointerId(pointerIndex);
 
         switch (action) {
-            case MotionEvent.ACTION_DOWN:
+            /*case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
+
 
                 player1.checkPlayerTouched((int) event.getX(pointerIndex), (int) event.getY(pointerIndex));
                 player2.checkPlayerTouched((int) event.getX(pointerIndex), (int) event.getY(pointerIndex));
@@ -279,9 +274,10 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
                     checkPlayer1TouchedAndSetPosition(player1, event, pointerIndex);
                     checkPlayer2TouchedAndSetPosition(player2, event, pointerIndex);
+
                 }
 
-                break;
+                break; */
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
@@ -293,21 +289,17 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 if (pointerId == 0) {
                     if (player1.isTouched()) {
                         player1.setTouched(false);
-                        player1.setPositionX((int) event.getX(pointerIndex));
                     }
                     if (player2.isTouched()) {
                         player2.setTouched(false);
-                        player2.setPositionX((int) event.getX(pointerIndex));
                     }
                 }
                 if (pointerId == 1) {
                     if (player1.isTouched()) {
                         player1.setTouched(false);
-                        player1.setPositionX((int) event.getX(pointerIndex));
                     }
                     if (player2.isTouched()) {
                         player2.setTouched(false);
-                        player2.setPositionX((int) event.getX(pointerIndex));
                     }
                 }
                 break;

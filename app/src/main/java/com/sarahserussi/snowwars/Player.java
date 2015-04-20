@@ -39,7 +39,7 @@ public class Player {
         if (eventX >= (positionX - bitmap.getWidth() / 2)
                 && (eventX <= (positionX + bitmap.getHeight() / 2))) {
             if (eventY >= (positionY - bitmap.getHeight() / 2)
-                    && (positionY <= (positionY + bitmap.getHeight() / 2))) { // TODO: Feil i koden? Skal det være eventY i stedet for positionY?
+                    && (eventY <= (positionY + bitmap.getHeight() / 2))) {
                 setTouched(true);
             } else {
                 setTouched(false);
