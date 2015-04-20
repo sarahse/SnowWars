@@ -36,22 +36,21 @@ public class Ball {
         canvas.drawBitmap(bitmap, sourceRect, destRect, null);
     }
 
-    public void update(){
+    public void update() {
         ballPositionX += (speed.getxVelocity() * speed.getxDirection());
         //ballPositionY += (speed.getyVelocity() * speed.getyDirection());
         ballPositionY += speed.getyVelocity();
         //this.setBallPositionX(ballPositionX);
         //this.setBallPositionY(ballPositionY);
-        if(getSpeed().getxVelocity() != 0){
-            speed.setyVelocity(getSpeed().getyVelocity() + (float)0.6);
+        if (getSpeed().getxVelocity() != 0) {
+            speed.setyVelocity(getSpeed().getyVelocity() + (float) 0.6);
         }
-
     }
 
     public void setServePositionToPlayer1(int screenWidth, int screenHeight) {
         /* need to get screenWidth & screenHeight */
-        this.setBallPositionX(screenWidth/4);
-        this.setBallPositionY(screenHeight * 7/10);
+        this.setBallPositionX(screenWidth / 4);
+        this.setBallPositionY(screenHeight * 7 / 10);
         this.getSpeed().setxVelocity(0);
         this.getSpeed().setyVelocity(0);
         this.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
@@ -60,8 +59,8 @@ public class Ball {
 
     public void setServePositionToPlayer2(int screenWidth, int screenHeight) {
         /* need to get screenWidth & screenHeight */
-        this.setBallPositionX(3 * screenWidth/4);
-        this.setBallPositionY(screenHeight * 7/10);
+        this.setBallPositionX(3 * screenWidth / 4);
+        this.setBallPositionY(screenHeight * 7 / 10);
         this.getSpeed().setxVelocity(0);
         this.getSpeed().setyVelocity(0);
         this.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
@@ -125,9 +124,11 @@ public class Ball {
         this.bitmap = bitmap;
     }
 
-    public Rect getSourceRect() { return sourceRect; }
+    public Rect getSourceRect() {
+        return sourceRect;
+    }
 
-    public Rect getSpriteRect(){
+    public Rect getSpriteRect() {
         return new Rect(getBallPositionX(), getBallPositionY(), getBallPositionX() + spriteWidth, getBallPositionY() + spriteHeight);
     }
 }

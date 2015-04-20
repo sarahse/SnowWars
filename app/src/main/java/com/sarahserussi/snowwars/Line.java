@@ -15,13 +15,13 @@ public class Line {
     private int spriteWidth, spriteHeight;
     private Rect sourceRect;
 
-    public Line(Bitmap bitmap, int linePositionX, int linePositionY){
+    public Line(Bitmap bitmap, int linePositionX, int linePositionY) {
         this.bitmap = bitmap;
         this.linePositionX = linePositionX;
         this.linePositionY = linePositionY;
         spriteHeight = bitmap.getHeight();
         spriteWidth = bitmap.getWidth();
-        sourceRect = new Rect(0,0,spriteWidth,spriteHeight);
+        sourceRect = new Rect(0, 0, spriteWidth, spriteHeight);
 
     }
 

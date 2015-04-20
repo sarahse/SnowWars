@@ -1,7 +1,6 @@
 package com.sarahserussi.snowwars;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
 import java.util.ArrayList;
 
 /**
@@ -25,19 +25,12 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private Player player1, player2;
     private Ball ball;
     private Line line;
-    private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
-    private Speed speed;
-    private Bitmap verticalLine;
     private Score score;
     private ArrayList<Score> observerList;
     private int screenWidth, screenHeight;
     private boolean endGame, player1Wins, player2Wins;
 
-
-
-    /* Where the touch methods go */
-     /* init */
     public GameState(Context context) {
         super(context);
 
@@ -67,7 +60,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         line.setSpriteWidth(60);
         line.setSpriteHeight(getScreenHeight() * 4 / 5);
         //line.setSpriteHeight((getScreenWidth()/2)-(line.getSpriteWidth()/2));
-
 
         //make the game focusable so it can handle events
         setFocusable(true);
@@ -110,15 +102,10 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void render(Canvas canvas) {
-       /* Resources res = getResources();
-        Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.winterbackground2);
 
-        Canvas can = new Canvas(bitmap.copy(Bitmap.Config.ARGB_8888, true));*/
         Drawable d = getResources().getDrawable(R.drawable.winterbackground2);
         d.setBounds(getLeft(), getTop(), getRight(), getBottom());
         d.draw(canvas);
-
-        //canvas.drawColor(Color.YELLOW);
 
         player1.draw(canvas);
         player2.draw(canvas);
@@ -136,9 +123,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             gameLoopThread.setRunning(false);
 
         }
-        //canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
-
-
     }
 
     /* check if the ball collides with the left wall */
@@ -163,24 +147,16 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         if (ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()) {
 
             // ball hits left side of net - give point to player 2
-            // if(ball.getBallPositionX()+ball.getBitmap().getWidth() < (getScreenWidth()/2)){
             if (ball.getBallPositionX() < line.getLinePositionX()) {
                 notifyObserver(2);
                 ball.setServePositionToPlayer2(screenWidth, screenHeight);
             }
             // ball hits right side of net - give point to player 1
-            //else if(ball.getBallPositionX()+ball.getBitmap().getWidth()>(getScreenWidth()/2)){
             else if (ball.getBallPositionX() > line.getLinePositionX()) {
                 notifyObserver(1);
                 ball.setServePositionToPlayer1(screenWidth, screenHeight);
             }
-
-
-            //ball.setBallPositionY(20);
         }
-
-        //ball.getSpeed().toggleYDirection();
-
     }
 
     /* check if the ball collides with the top wall */
@@ -192,10 +168,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    private int randomWithRange(int min, int max)
-    {
+    private int randomWithRange(int min, int max) {
         int range = (max - min) + 1;
-        return (int)(Math.random() * range) + min;
+        return (int) (Math.random() * range) + min;
     }
 
     /* check if the ball intersects with player or web */
@@ -215,8 +190,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
 
             //the ball gets a random speed
-            ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/65,getScreenHeight()/50));
-            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/65,getScreenHeight()/50));
+            ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 65, getScreenHeight() / 50));
+            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 65, getScreenHeight() / 50));
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())) {
 
@@ -231,19 +206,19 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
             }
 
-            ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/65,getScreenHeight()/50));
-            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/65,getScreenHeight()/50));
+            ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 65, getScreenHeight() / 50));
+            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 65, getScreenHeight() / 50));
         }
 
         try {
             if (ball.getSpriteRect().intersect(line.getSpriteRect())) {
 
-                if(ball.getBallPositionX() <= getScreenWidth()/2){
-                    ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
-                    ball.getSpeed().setxVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+                if (ball.getBallPositionX() <= getScreenWidth() / 2) {
+                    ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 60, getScreenHeight() / 50));
+                    ball.getSpeed().setxVelocity(-randomWithRange(getScreenHeight() / 60, getScreenHeight() / 50));
                 } else {
-                    ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
-                    ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+                    ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 60, getScreenHeight() / 50));
+                    ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 60, getScreenHeight() / 50));
                 }
 
             }
@@ -396,7 +371,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
                 endGame = true;
                 player1Wins = true;
-                //gameLoopThread.setRunning(false);
             }
         }
         if (player == 2) {
@@ -405,7 +379,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
                 endGame = true;
                 player2Wins = true;
-                //gameLoopThread.setRunning(false);
             }
 
         }
@@ -417,9 +390,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         paintPlayerTxt.setColor(Color.BLACK);
         paintPlayerTxt.setTextSize(getScreenWidth() / 40);
         paintPlayerTxt.setTypeface(Typeface.DEFAULT_BOLD);
-
-        //Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "caviardreamsbold.ttf");
-        //paintPlayerTxt.setTypeface(tf);
 
         can.drawText("Player 1", getScreenWidth() / 3, getScreenHeight() / 8, paintPlayerTxt);
         can.drawText("Player 2", getScreenWidth() / 2 + getScreenWidth() / 10, getScreenHeight() / 8, paintPlayerTxt);
@@ -438,9 +408,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         txt.setColor(Color.BLACK);
         text2.setColor(Color.BLACK);
         txt.setTextSize(getScreenWidth() / 20);
-        text2.setTextSize(getScreenWidth() /30);
+        text2.setTextSize(getScreenWidth() / 30);
         can.drawText("The winner is " + player + " !", getScreenWidth() / 5, getScreenHeight() / 3, txt);
-        can.drawText("Press the back button in the navigation bar to exit", getScreenWidth() /7, getScreenHeight() /2, text2);
+        can.drawText("Press the back button in the navigation bar to exit", getScreenWidth() / 7, getScreenHeight() / 2, text2);
     }
 
     @Override
@@ -466,5 +436,4 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
         }
     }
-
 }

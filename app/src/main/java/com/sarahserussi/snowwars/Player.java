@@ -2,7 +2,6 @@ package com.sarahserussi.snowwars;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
@@ -47,12 +46,6 @@ public class Player {
         } else {
             setTouched(false);
         }
-
-    }
-
-    /* jump */
-    public void jump() {
-
     }
 
     public int getPositionX() {
@@ -115,20 +108,20 @@ public class Player {
         return height;
     }
 
-    public Rect getSpriteRect(){
+    public Rect getSpriteRect() {
         return new Rect(getPositionX(), getPositionY(), getPositionX() + getSpriteWidth(), getPositionY() + getSpriteHeight());
     }
 
-    public Rect getRightSideRect(){
-        return new Rect(((getPositionX() + getSpriteWidth())/2), getPositionY(), (getPositionX() + getSpriteWidth()), getPositionY() + getSpriteHeight());
+    public Rect getRightSideRect() {
+        return new Rect(((getPositionX() + getSpriteWidth()) / 2), getPositionY(), (getPositionX() + getSpriteWidth()), getPositionY() + getSpriteHeight());
     }
 
     public Rect getLeftSideRect() {
-        return new Rect(getPositionX(), getPositionY(), ((getPositionX()+ getSpriteWidth())/2), getPositionY() + getSpriteHeight());
+        return new Rect(getPositionX(), getPositionY(), ((getPositionX() + getSpriteWidth()) / 2), getPositionY() + getSpriteHeight());
     }
 
     public boolean isPlayer1InLane() {
-        if (this.getPositionX() < getScreenWidth()/2 && this.getPositionX() > 0){
+        if (this.getPositionX() < getScreenWidth() / 2 && this.getPositionX() > 0) {
             return true;
         } else {
             return false;
@@ -136,12 +129,10 @@ public class Player {
     }
 
     public boolean isPlayer2InLane() {
-        if (this.getPositionX() > getScreenWidth()/2 && this.getPositionX() < getScreenWidth()){
+        if (this.getPositionX() > getScreenWidth() / 2 && this.getPositionX() < getScreenWidth()) {
             return true;
         } else {
             return false;
         }
     }
-
-
 }

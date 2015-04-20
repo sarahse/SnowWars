@@ -18,7 +18,7 @@ public class StartMenu {
 
     protected void onButtonsClicked(){
         if (rulesButton.isPressed()){
-            new RulesView();
+            //new RulesView();
         } else if (connplayButton.isPressed()){
             //new GameState();
         } else if (quitButton.isPressed()){
