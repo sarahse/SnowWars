@@ -215,8 +215,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
 
             //the ball gets a random speed
-            ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
-            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+            ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/65,getScreenHeight()/50));
+            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/65,getScreenHeight()/50));
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())) {
 
@@ -231,17 +231,17 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
             }
 
-            ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
-            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+            ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/65,getScreenHeight()/50));
+            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/65,getScreenHeight()/50));
         }
 
         try {
             if (ball.getSpriteRect().intersect(line.getSpriteRect())) {
-                ball.getSpeed().toggleXDirection();
-                ball.getSpeed().toggleYDirection();
+                //ball.getSpeed().toggleXDirection();
+                //ball.getSpeed().toggleYDirection();
 
-                //ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
-                //ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+                ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+                ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
