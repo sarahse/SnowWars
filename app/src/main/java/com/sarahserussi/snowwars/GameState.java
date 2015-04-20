@@ -283,9 +283,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_CANCEL:
 
-                player1.checkPlayerTouched((int) event.getX(pointerIndex), (int) event.getY(pointerIndex));
-                player2.checkPlayerTouched((int) event.getX(pointerIndex), (int) event.getY(pointerIndex));
-
                 if (pointerId == 0) {
                     if (player1.isTouched()) {
                         player1.setTouched(false);
