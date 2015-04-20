@@ -38,6 +38,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private int screenWidth, screenHeight;
     private boolean endGame, player1Wins, player2Wins;
 
+
+
     /* Where the touch methods go */
      /* init */
     public GameState(Context context) {
@@ -100,6 +102,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         screenWidth = getScreenWidth(context);
         screenHeight = getScreenHeight(context);
 
+        //endGameButton = new Button(this);
     }
 
 
@@ -140,12 +143,12 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         if (endGame && player1Wins) {
             endText(canvas, "Player 1");
             gameLoopThread.setRunning(false);
-            ((Activity) getContext()).finish();
+
         }
         if (endGame && player2Wins) {
             endText(canvas, "Player 2");
             gameLoopThread.setRunning(false);
-            ((Activity) getContext()).finish();
+
         }
         //canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.winterbackground2), 0, 0, null);
 
@@ -449,9 +452,13 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     private void endText(Canvas can, String player) {
         Paint txt = new Paint();
-        txt.setColor(Color.LTGRAY);
+        Paint text2 = new Paint();
+        txt.setColor(Color.BLACK);
+        text2.setColor(Color.BLACK);
         txt.setTextSize(getScreenWidth() / 20);
+        text2.setTextSize(getScreenWidth() /30);
         can.drawText("The winner is " + player + " !", getScreenWidth() / 5, getScreenHeight() / 3, txt);
+        can.drawText("Press the back button in the navigation bar to exit", getScreenWidth() /7, getScreenHeight() /2, text2);
     }
 
     @Override
@@ -477,4 +484,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
         }
     }
+
+
 }

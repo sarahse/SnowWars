@@ -16,6 +16,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public static int bkgdChecked = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         rulesButton.setOnClickListener(this);
         View exitButton = findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
+
     }
 
     @Override
@@ -50,14 +52,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onStop();
     }
 
+
+
     /* start game */
     @Override
     public void onClick(View v) {
 
         switch(v.getId()){
             case R.id.startButton:
-                View textLoading = findViewById(R.id.textLoading);
-                textLoading.setVisibility(View.VISIBLE);
+                //View textLoading = findViewById(R.id.textLoading);
+                //textLoading.setVisibility(View.VISIBLE);
                 Intent intentStart = new Intent(this, GameActivity.class);
                 startActivity(intentStart);
                 break;
