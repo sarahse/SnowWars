@@ -471,5 +471,4 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-
 }
