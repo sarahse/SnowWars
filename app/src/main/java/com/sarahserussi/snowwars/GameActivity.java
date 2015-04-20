@@ -27,7 +27,7 @@ public class GameActivity extends Activity {
         gameState.requestFocus();
 
         if (lastBkgdChecked == 0) {
-            music = MediaPlayer.create(GameActivity.this, R.raw.hot_snow);
+            music = MediaPlayer.create(GameActivity.this, R.raw.candyvalley);
             music.setLooping(true);
             music.start();
         }
@@ -39,7 +39,7 @@ public class GameActivity extends Activity {
         if (lastBkgdChecked == 0) {
             music.release();
         }
-        MainActivity.bkgdChecked = 0; // Needed so to reset global variable the checkbox to notChecked
+        //MainActivity.bkgdChecked = 0; // Needed to reset global variable checkbox to notChecked
         super.onPause();
         finish();
     }
