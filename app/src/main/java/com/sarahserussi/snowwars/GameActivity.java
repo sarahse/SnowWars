@@ -3,8 +3,11 @@ package com.sarahserussi.snowwars;
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 /**
  * Created by Anders H. Gundersen on 14.04.2015.
@@ -42,6 +45,12 @@ public class GameActivity extends Activity {
         //MainActivity.bkgdChecked = 0; // Needed to reset global variable checkbox to notChecked
         super.onPause();
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
     }
 
 }

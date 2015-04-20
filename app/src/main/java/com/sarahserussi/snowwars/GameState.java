@@ -45,15 +45,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public GameState(Context context) {
         super(context);
 
-        // TODO: Set background
         // Bind xml file
         //Activity a = (Activity) context;
         //a.setContentView(R.layout.activity_game);
-
-        // Using ImageView
-        // myImageView = (ImageView)findViewById(R.id.background);
-        //myImageView.setImageResource(R.drawable.winterbackground2);
-        // myImageView.setImageDrawable(getResources().getDrawable(R.drawable.winterbackground2));
 
 
         //create player and load bitmap
@@ -93,9 +87,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         // create the game loop thread
         gameLoopThread = new GameLoopThread(this);
 
-        //set servePos
-        //add background
-        //set new score
+        // set new score
         score = new Score();
         observerList = new ArrayList<Score>();
         observerList.add(score);
@@ -439,8 +431,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         //Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "caviardreamsbold.ttf");
         //paintPlayerTxt.setTypeface(tf);
 
-        can.drawText("Player1", getScreenWidth() / 3, getScreenHeight() / 8, paintPlayerTxt);
-        can.drawText("Player2", getScreenWidth() / 2 + getScreenWidth() / 10, getScreenHeight() / 8, paintPlayerTxt);
+        can.drawText("Player 1", getScreenWidth() / 3, getScreenHeight() / 8, paintPlayerTxt);
+        can.drawText("Player 2", getScreenWidth() / 2 + getScreenWidth() / 10, getScreenHeight() / 8, paintPlayerTxt);
 
         Paint scoreTxt = new Paint();
         scoreTxt.setColor(Color.BLACK);
