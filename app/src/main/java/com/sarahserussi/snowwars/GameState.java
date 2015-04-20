@@ -237,11 +237,15 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
         try {
             if (ball.getSpriteRect().intersect(line.getSpriteRect())) {
-                //ball.getSpeed().toggleXDirection();
-                //ball.getSpeed().toggleYDirection();
 
-                ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
-                ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+                if(ball.getBallPositionX() <= getScreenWidth()/2){
+                    ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+                    ball.getSpeed().setxVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+                } else {
+                    ball.getSpeed().setyVelocity(- randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+                    ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight()/60,getScreenHeight()/50));
+                }
+
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
