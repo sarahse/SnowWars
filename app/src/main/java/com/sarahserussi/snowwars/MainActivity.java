@@ -88,6 +88,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 }
             }
         });
-        bkgdChecked = 0;
+        //bkgdChecked = 0;
     }
 }

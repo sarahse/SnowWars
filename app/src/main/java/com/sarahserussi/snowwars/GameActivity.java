@@ -42,7 +42,6 @@ public class GameActivity extends Activity {
         if (lastBkgdChecked == 0) {
             music.release();
         }
-        //MainActivity.bkgdChecked = 0; // Needed to reset global variable checkbox to notChecked
         super.onPause();
         finish();
     }
