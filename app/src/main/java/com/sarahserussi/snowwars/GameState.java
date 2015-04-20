@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
-    private Player player, player1, player2;
+    private Player player1, player2;
     private Ball ball;
     private Line line;
     private SurfaceHolder holder;
@@ -34,7 +34,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap verticalLine;
     private Score score;
     private ArrayList<Score> observerList;
-    private ImageView myImageView;
     private int screenWidth, screenHeight;
     private boolean endGame, player1Wins, player2Wins;
 
@@ -97,6 +96,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         //endGameButton = new Button(this);
     }
 
+    public GameLoopThread getGameLoopThread() {
+        return this.gameLoopThread;
+    }
 
     //update method: updates the gamestate
     public void update() {

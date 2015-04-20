@@ -48,6 +48,8 @@ public class GameActivity extends Activity {
 
     @Override
     public void onBackPressed() {
+        gameState.getGameLoopThread().setRunning(false);
+        finish();
         super.onBackPressed();
 
     }
