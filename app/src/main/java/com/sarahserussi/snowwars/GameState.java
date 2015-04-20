@@ -15,9 +15,6 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.ImageView;
-import android.app.Activity;
-
 import java.util.ArrayList;
 
 /**
@@ -43,11 +40,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
      /* init */
     public GameState(Context context) {
         super(context);
-
-        // Bind xml file
-        //Activity a = (Activity) context;
-        //a.setContentView(R.layout.activity_game);
-
 
         //create player and load bitmap
         player1 = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.figure1),
@@ -93,14 +85,14 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         screenWidth = getScreenWidth(context);
         screenHeight = getScreenHeight(context);
 
-        //endGameButton = new Button(this);
     }
 
+    // get current thread so we can stop it when backButton is pressed
     public GameLoopThread getGameLoopThread() {
         return this.gameLoopThread;
     }
 
-    //update method: updates the gamestate
+    // update method: updates the gamestate
     public void update() {
 
         ball.update();

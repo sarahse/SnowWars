@@ -75,7 +75,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    /* Function for turning off background music */
+    /*  Function for turning off background music.
+    *   Listens to see if checkBox is checked or not. */
     public void setMusicOff() {
         CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox);
         checkBox1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -88,6 +89,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 }
             }
         });
-        //bkgdChecked = 0;
     }
 }

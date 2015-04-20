@@ -3,11 +3,9 @@ package com.sarahserussi.snowwars;
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.LinearLayout;
+
 
 /**
  * Created by Anders H. Gundersen on 14.04.2015.
@@ -29,8 +27,9 @@ public class GameActivity extends Activity {
         setContentView(gameState);
         gameState.requestFocus();
 
+        // play music if checkBox is not checked
         if (lastBkgdChecked == 0) {
-            music = MediaPlayer.create(GameActivity.this, R.raw.candyvalley);
+            music = MediaPlayer.create(GameActivity.this, R.raw.fresh_melon);
             music.setLooping(true);
             music.start();
         }
@@ -46,6 +45,7 @@ public class GameActivity extends Activity {
         finish();
     }
 
+    // stop game when backButton is pressed
     @Override
     public void onBackPressed() {
         gameState.getGameLoopThread().setRunning(false);
