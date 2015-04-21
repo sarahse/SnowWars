@@ -190,8 +190,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
 
             //the ball gets a random speed
-            ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 65, getScreenHeight() / 50));
-            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 65, getScreenHeight() / 50));
+            ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 35, getScreenHeight() / 30));
+            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 35, getScreenHeight() / 25));
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())) {
 
@@ -206,19 +206,19 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
             }
 
-            ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 65, getScreenHeight() / 50));
-            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 65, getScreenHeight() / 50));
+            ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 35, getScreenHeight() / 30));
+            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 35, getScreenHeight() / 30));
         }
 
         try {
             if (ball.getSpriteRect().intersect(line.getSpriteRect())) {
 
                 if (ball.getBallPositionX() <= getScreenWidth() / 2) {
-                    ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 60, getScreenHeight() / 50));
-                    ball.getSpeed().setxVelocity(-randomWithRange(getScreenHeight() / 60, getScreenHeight() / 50));
+                    ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 60, getScreenHeight() / 70));
+                    ball.getSpeed().setxVelocity(-randomWithRange(getScreenHeight() / 60, getScreenHeight() / 70));
                 } else {
-                    ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 60, getScreenHeight() / 50));
-                    ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 60, getScreenHeight() / 50));
+                    ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 60, getScreenHeight() / 70));
+                    ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 60, getScreenHeight() / 70));
                 }
 
             }
