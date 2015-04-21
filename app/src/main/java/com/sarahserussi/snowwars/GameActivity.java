@@ -29,7 +29,7 @@ public class GameActivity extends Activity {
 
         // play music if checkBox is not checked
         if (lastBkgdChecked == 0) {
-            music = MediaPlayer.create(GameActivity.this, R.raw.fresh_melon);
+            music = MediaPlayer.create(GameActivity.this, R.raw.candyvalley);
             music.setLooping(true);
             music.start();
         }
