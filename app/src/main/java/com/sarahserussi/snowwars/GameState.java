@@ -190,8 +190,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             }
 
             //the ball gets a random speed
-            ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 35, getScreenHeight() / 30));
-            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 35, getScreenHeight() / 25));
+            ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 40, getScreenHeight() / 35));
+            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 30, getScreenHeight() / 25));
         }
         if (ball.getSpriteRect().intersect(player2.getSpriteRect())) {
 
@@ -206,8 +206,8 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 ball.getSpeed().setxDirection(Speed.DIRECTION_LEFT);
             }
 
-            ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 35, getScreenHeight() / 30));
-            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 35, getScreenHeight() / 30));
+            ball.getSpeed().setyVelocity(-randomWithRange(getScreenHeight() / 40, getScreenHeight() / 35));
+            ball.getSpeed().setxVelocity(randomWithRange(getScreenHeight() / 30, getScreenHeight() / 25));
         }
 
         try {
