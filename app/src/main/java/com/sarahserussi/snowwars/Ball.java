@@ -11,8 +11,6 @@ public class Ball {
 
     private int ballPositionX;
     private int ballPositionY;
-    private int ballSpeedX;
-    private int ballSpeedY;
     private Speed speed;
     private Player player;
     private Bitmap bitmap;
