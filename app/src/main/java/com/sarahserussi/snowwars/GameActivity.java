@@ -42,6 +42,7 @@ public class GameActivity extends Activity {
             music.release();
         }
         super.onPause();
+        gameState.getGameLoopThread().setRunning(false);
         finish();
     }
 
@@ -52,6 +53,5 @@ public class GameActivity extends Activity {
         finish();
 
     }
-
 }
 

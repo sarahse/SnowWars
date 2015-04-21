@@ -22,7 +22,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rules"
+        android:text="Instructions"
         android:id="@+id/rulesButton"
         android:background="@drawable/winter_sign"
         android:paddingBottom="100dp"
