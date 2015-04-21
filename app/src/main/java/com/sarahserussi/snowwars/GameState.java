@@ -46,7 +46,7 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         player2.setSpriteHeight(getScreenHeight(context) / 5);
 
         //create ball and load bitmap
-        ball = new Ball(BitmapFactory.decodeResource(getResources(), R.drawable.aquaball),
+        ball = new Ball(BitmapFactory.decodeResource(getResources(), R.drawable.snowball),
                 getScreenWidth(context) / 5, getScreenHeight(context) / 5); //set ball position
         ball.setSpriteHeight(getScreenHeight(context) / 10);
         ball.setSpriteWidth(getScreenHeight(context) / 10);
