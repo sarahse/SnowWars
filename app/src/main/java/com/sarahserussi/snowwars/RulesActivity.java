@@ -1,7 +1,6 @@
 package com.sarahserussi.snowwars;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -30,8 +29,8 @@ public class RulesActivity extends Activity implements View.OnClickListener {
     }
 
 
-    public void onClick(View v){
-        switch(v.getId()){
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.backButton:
                 finish();
                 break;

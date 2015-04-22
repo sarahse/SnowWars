@@ -2,7 +2,6 @@ package com.sarahserussi.snowwars;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -15,7 +14,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     public static int bkgdChecked = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,20 +46,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
     }
-
-
 
     /* start game */
     @Override
     public void onClick(View v) {
 
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.startButton:
-                //View textLoading = findViewById(R.id.textLoading);
-                //textLoading.setVisibility(View.VISIBLE);
                 Intent intentStart = new Intent(this, GameActivity.class);
                 startActivity(intentStart);
                 break;

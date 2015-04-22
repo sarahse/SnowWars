@@ -10,11 +10,11 @@ public class GameLoopThread extends Thread {
     private GameState gameState;
     private boolean running = false;
 
-    public GameLoopThread(GameState gameState){
+    public GameLoopThread(GameState gameState) {
         this.gameState = gameState;
     }
 
-    public void setRunning(boolean running){
+    public void setRunning(boolean running) {
         this.running = running;
     }
 
@@ -25,20 +25,16 @@ public class GameLoopThread extends Thread {
             try {
                 canvas = gameState.getHolder().lockCanvas();
                 synchronized (gameState.getHolder()) {
-
                     //draws the canvas on the panel
                     gameState.render(canvas);
-
                     //update game state
                     gameState.update();
-
                 }
             } finally {
-                if (canvas != null){
+                if (canvas != null) {
                     gameState.getHolder().unlockCanvasAndPost(canvas);
                 }
             }
         }
     }
-
 }

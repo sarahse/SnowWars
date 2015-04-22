@@ -17,11 +17,11 @@ public class GameActivity extends Activity {
     private MediaPlayer music;
     private int lastBkgdChecked = MainActivity.bkgdChecked;
 
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         gameState = new GameState(this);
         setContentView(gameState);
@@ -33,8 +33,6 @@ public class GameActivity extends Activity {
             music.setLooping(true);
             music.start();
         }
-
-
     }
 
     protected void onPause() {
@@ -51,7 +49,6 @@ public class GameActivity extends Activity {
     public void onBackPressed() {
         gameState.getGameLoopThread().setRunning(false);
         finish();
-
     }
 }
 

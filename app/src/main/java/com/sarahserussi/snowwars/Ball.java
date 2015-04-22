@@ -12,11 +12,9 @@ public class Ball {
     private int ballPositionX;
     private int ballPositionY;
     private Speed speed;
-    private Player player;
     private Bitmap bitmap;
     private int spriteWidth, spriteHeight;
     private Rect sourceRect;
-
 
     /* constructor */
     public Ball(Bitmap bitmap, int ballPositionX, int ballPositionY) {
@@ -36,10 +34,8 @@ public class Ball {
 
     public void update() {
         ballPositionX += (speed.getxVelocity() * speed.getxDirection());
-        //ballPositionY += (speed.getyVelocity() * speed.getyDirection());
         ballPositionY += speed.getyVelocity();
-        //this.setBallPositionX(ballPositionX);
-        //this.setBallPositionY(ballPositionY);
+
         if (getSpeed().getxVelocity() != 0) {
             speed.setyVelocity(getSpeed().getyVelocity() + (float) 0.6);
         }
@@ -62,16 +58,6 @@ public class Ball {
         this.getSpeed().setxVelocity(0);
         this.getSpeed().setyVelocity(0);
         this.getSpeed().setxDirection(Speed.DIRECTION_RIGHT);
-    }
-
-    /* checks if the ball touches the player, needs editing (bitmapRect) */
-    public boolean touchesPlayer(Player player) {
-        if (this.getBallPositionX() == player.getPositionX()
-                && this.getBallPositionY() == player.getPositionY()) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public int getSpriteWidth() {

@@ -16,12 +16,7 @@ public class Speed {
     private int xDirection = DIRECTION_RIGHT;
     private int yDirection = DIRECTION_DOWN;
 
-    public Speed(){
-        this.xVelocity = 5;
-        this.yVelocity = 5;
-    }
-
-    public Speed(float xVelocity, float yVelocity){
+    public Speed(float xVelocity, float yVelocity) {
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
     }
@@ -59,12 +54,12 @@ public class Speed {
     }
 
     //changes the direction on the x axis
-    public void toggleXDirection(){
+    public void toggleXDirection() {
         xDirection = xDirection * -1;
     }
 
     //changes the direction on the y axis
-    public void toggleYDirection(){
+    public void toggleYDirection() {
         yDirection = yDirection * -1;
     }
 }

@@ -2,7 +2,6 @@ package com.sarahserussi.snowwars;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -59,7 +58,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 (getScreenWidth(context) / 2) - 30, getScreenHeight(context) * 3 / 5);
         line.setSpriteWidth(60);
         line.setSpriteHeight(getScreenHeight() * 4 / 5);
-        //line.setSpriteHeight((getScreenWidth()/2)-(line.getSpriteWidth()/2));
 
         //make the game focusable so it can handle events
         setFocusable(true);
@@ -88,17 +86,11 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public void update() {
 
         ball.update();
-
         checkLeftWallCollision();
-
         checkRightWallCollision();
-
         checkBottomWallCollision();
-
         checkTopWallCollision();
-
         checkIntersect();
-
     }
 
     public void render(Canvas canvas) {
@@ -116,12 +108,11 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
         if (endGame && player1Wins) {
             endText(canvas, "Player 1");
             gameLoopThread.setRunning(false);
-
         }
+
         if (endGame && player2Wins) {
             endText(canvas, "Player 2");
             gameLoopThread.setRunning(false);
-
         }
     }
 
@@ -137,7 +128,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public void checkRightWallCollision() {
         if (ball.getSpeed().getxDirection() == Speed.DIRECTION_RIGHT
                 && ball.getBallPositionX() + ball.getBitmap().getWidth() / 3.5 >= getScreenWidth()) {
-            /* need to add the width of the bitmap to check outer position of the ball */
             ball.getSpeed().toggleXDirection();
         }
     }
@@ -145,7 +135,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     /* check if the ball collides with the bottom wall */
     public void checkBottomWallCollision() {
         if (ball.getBallPositionY() + ball.getBitmap().getHeight() / 3.5 >= getScreenHeight()) {
-
             // ball hits left side of net - give point to player 2
             if (ball.getBallPositionX() < line.getLinePositionX()) {
                 notifyObserver(2);
@@ -163,7 +152,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     public void checkTopWallCollision() {
         if (ball.getSpeed().getyDirection() == Speed.DIRECTION_UP
                 && ball.getBallPositionY() + ball.getBitmap().getHeight() <= 0) {
-            /* needs to have a timer function that delays the descent of the ball */
             ball.getSpeed().toggleYDirection();
         }
     }
@@ -234,32 +222,11 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-
         int action = event.getAction() & MotionEvent.ACTION_MASK;
         int pointerIndex = (event.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
         int pointerId = event.getPointerId(pointerIndex);
 
         switch (action) {
-            /*case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_POINTER_DOWN:
-
-
-                player1.checkPlayerTouched((int) event.getX(pointerIndex), (int) event.getY(pointerIndex));
-                player2.checkPlayerTouched((int) event.getX(pointerIndex), (int) event.getY(pointerIndex));
-
-                if (pointerId == 0) {
-
-                    checkPlayer1TouchedAndSetPosition(player1, event, pointerIndex);
-                    checkPlayer2TouchedAndSetPosition(player2, event, pointerIndex);
-                }
-                if (pointerId == 1) {
-
-                    checkPlayer1TouchedAndSetPosition(player1, event, pointerIndex);
-                    checkPlayer2TouchedAndSetPosition(player2, event, pointerIndex);
-
-                }
-
-                break; */
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
@@ -334,9 +301,9 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             if (player1.getSpriteRect().intersect(line.getSpriteRect())) {
                 player1.setPositionX((getScreenWidth() / 2 - player1.getSpriteRect().width() - (line.getSpriteWidth() / 2) - 10));
             }
-            if (player1.isPlayer1InLane()){
+            if (player1.isPlayer1InLane()) {
                 if ((player1.getPositionX() < 0)) {
-                    player1.setPositionX(player1.getSpriteRect().width()/8);
+                    player1.setPositionX(player1.getSpriteRect().width() / 8);
                 }
             }
         }
@@ -373,7 +340,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
             score.addScoreToPlayer1();
             if (score.getPlayer1Score() == 3) {
                 //stop game
-
                 endGame = true;
                 player1Wins = true;
             }
@@ -385,7 +351,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
                 endGame = true;
                 player2Wins = true;
             }
-
         }
     }
 
@@ -426,7 +391,6 @@ public class GameState extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
     }
 
     @Override
